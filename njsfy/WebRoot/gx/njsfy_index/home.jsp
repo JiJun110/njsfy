@@ -10,6 +10,23 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery-1.7.2.min.js"></script>
     <link href="<%=request.getContextPath()%>/gx/njsfy_index/images/css.css" rel="stylesheet">
     <script type="text/javascript">
+        function change1() {
+            $(" #two2 ").val("")
+            $(" #three3 ").val("")
+
+        }
+        function change2() {
+            $(" #one1 ").val("")
+            $(" #three3 ").val("")
+
+
+        }
+        function change3() {
+            $(" #two2 ").val("")
+            $(" #one1 ").val("")
+
+
+        }
         $(function(){
             $(".bodys p").not(":first").hide();
             $(".searchbox ul li").mouseover(function(){
@@ -46,17 +63,17 @@
                 <li><a href="#">适应症</a></li>
             </ul>
             <div class="bodys">
-                <form action="<%=basePath%>njsfy-index/home.do" method="get">
+                <form action="<%=basePath%>njsfy-index/home.do" method="post">
                     <p>
-                        <input type="text" name="name1" value="" id="1" class="one" placeholder="如：阿司匹林" />
+                        <input type="text" onchange="change1()" name="searchMedicine" value="" id="one1" class="one" placeholder="如：阿司匹林" />
                         <button type="submit" class="one1"><img src="images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
                     </p>
                     <p>
-                        <input type="text" name="name2" value="" id="2" class="two" placeholder="如：一日一次" />
+                        <input type="text" onchange="change2()" name="searchYl" value="" id="two2" class="two" placeholder="如：一日一次" />
                         <button type="submit" class="two2"><img src="images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
                     </p>
                     <p>
-                        <input type="text" name="name3" value="" id="3" class="three" placeholder="如：感冒" />
+                        <input type="text" onchange="change3()" name="searchSyz" value="" id="three3" class="three" placeholder="如：感冒" />
                         <button type="submit" class="three3 "><img src="images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
                     </p>
 
