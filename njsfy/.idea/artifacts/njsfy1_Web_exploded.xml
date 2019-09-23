@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="njsfy1:Web exploded">
+    <output-path>$PROJECT_DIR$/out/njsfy</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="njsfy1/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="njsfy1" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="activation-1.1" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
