@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class NjsfyWebController {
     @RequestMapping("home")
     public void home(String name1,String name2,String name3){
-        System.out.println("123");
+
+        System.out.println("123456");
 
     }
 }
