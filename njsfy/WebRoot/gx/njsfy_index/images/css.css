@@ -1,7 +1,7 @@
 .searchbg{ background: #699a3a url(img_bannerbg.jpg)no-repeat right top fixed; width:100%; min-height:538px; padding:0px; margin:0px;}
-body{padding:0px; margin:0px; background:#f1f1f1;word-wrap:break-word}
+body{padding:0px; margin:0px; background:#f1f1f1;word-wrap:break-word; font-size:12px;}
 .searchbox_bg{ background: url(img_top.png)no-repeat left top fixed; width:100%; min-height:338px; padding:200px 0px 0px 0px; margin:0px;}
-a,img{border:0;}
+a,img{border:0; color:#333; text-decoration: none;}
 ul,li,p{ padding:0px; margin:0px;}
 /* searchbox */
 .searchbox{width:850px;height:80px;margin:0px auto 0 auto;}
@@ -51,12 +51,36 @@ ul,li,p{ padding:0px; margin:0px;}
 .detail_left{ width:275px; background:#FFF;box-shadow:0  2px 10px rgba(0,0,0,0.15); float:left; min-height:100px;}
 .detail_right{ width:905px;  float:left; min-height:100px; margin-left:20px}
 .detail_contain{background:#FFF;box-shadow:0  2px 10px rgba(0,0,0,0.15); width:905px;min-height:100px; padding-bottom:10px; }
-.detail_title{ font-weight: bold; color:#333; padding:20px 10px 10px 10px; border-bottom:1px #f1f1f1 solid; margin-bottom:10px;}
+.detail_title{ font-weight: bold; color:#333; padding:20px 10px 10px 10px; border-bottom:1px #f1f1f1 solid; margin-bottom:10px; font-size:14px}
 .line{ border-left:3px #739d39 solid; padding-right:5px;}
 .explain{ color:#565656; text-indent:26px; font-size:13px; font-weight: normal; line-height:21px; padding-top:10px;}
 .button{ background:#6b9b3a; border-radius:8px; color:#fff; font-size:14px; border:0px; line-height:24px; width:80px;}
 .fjtable{border:1px #d1d5af solid; border-collapse:collapse; margin-top:15px; }
 .fjtable td{ border:1px #d1d5af solid; border-collapse:collapse; line-height:30px; font-size:13px; font-weight:normal; padding:3px;}
 .fjtitle{ text-align:center; background:#e4e7cb; color:#61911f;}
+.searchC{ background:#FFF;box-shadow:0  2px 10px rgba(0,0,0,0.15); width:100%; min-height:100px;}
+.result{ height:46px; line-height:46px;  width:90%; margin: auto;}
+.resulttitle{ float:left; font-size:24px; padding:20px 0px 0px 0px;}
+.resultnumber{ float:right; font-size:12px; padding:20px 10px 0px 10px;}
+.resulttable{ text-align:left; padding:10px; width:90%; margin: auto; }
+.resulttable ul li{ list-style: none; border-bottom:1px #f1f1f1 solid; padding-bottom:10px; padding-top:5px;}
+.resultlink{ text-align:left; padding:0px; margin:0px; line-height:30px;}
+p{ color:#898989}
+/*分页*/
+.i20{ display:block; clear:both; height:20px; line-height:20px; font-size:20px; overflow:hidden;}
+/**分页样式*/   
+.pager { margin:auto; text-align:center; height:40px; }
+.pager a{ border:#999999 1px solid; border-radius:4px; padding:6px 10px; margin-left:5px;}
+.pager span{ margin-left:5px;padding:6px 10px;border-radius:4px; border:#739d39 1px solid; }
+.pager a:hover ,#pager a:active { border:#739d39 1px solid; color:#fff; background:#739d39;}
+.pager span.current {   font-weight:bold; color:#fff; background:#739d39;}
+.pager span.disabled { color: #999999; padding:6px 10px; border:#999999 1px solid; }
+
+.provnext{padding:10px 5px 20px;}
+.prov{ height:34px; line-height:34px; font-size:14px; font-weight:bold; float:left; width:100%; }
+.next{ height:34px; line-height:34px;font-size:14px; font-weight:bold; float:left; width:100%;}
+.next a:hover,.prov a:hover{ color:#739d39; font-weight:bold;}
+.red{ color:#ff0000}
+
 
 

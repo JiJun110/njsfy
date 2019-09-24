@@ -66,15 +66,15 @@
                 <form action="<%=basePath%>njsfy-index/home.do" method="post">
                     <p>
                         <input type="text" onchange="change1()" name="searchMedicine" value="" id="one1" class="one" placeholder="如：阿司匹林" />
-                        <button type="submit" class="one1"><img src="images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
+                        <button type="submit" class="one1"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
                     </p>
                     <p>
                         <input type="text" onchange="change2()" name="searchYl" value="" id="two2" class="two" placeholder="如：一日一次" />
-                        <button type="submit" class="two2"><img src="images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
+                        <button type="submit" class="two2"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
                     </p>
                     <p>
                         <input type="text" onchange="change3()" name="searchSyz" value="" id="three3" class="three" placeholder="如：感冒" />
-                        <button type="submit" class="three3 "><img src="images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
+                        <button type="submit" class="three3 "><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
                     </p>
 
                 </form>
