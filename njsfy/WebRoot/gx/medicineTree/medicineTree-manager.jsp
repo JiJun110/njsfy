@@ -42,6 +42,7 @@
     }
 
     function returnTreeJSON() {
+        console.log("treetree")
         var jsont=null;
         $.ajax({
             url:'<%=basePath%>njsfy-medicineTree/medicineTree-tree.do',
