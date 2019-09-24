@@ -6,7 +6,7 @@
 %>
 <html>
 <head>
-    <title>市妇幼</title>
+    <title>南京市妇幼</title>
     <script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery-1.7.2.min.js"></script>
     <link href="<%=request.getContextPath()%>/gx/njsfy_index/images/css.css" rel="stylesheet">
     <script type="text/javascript">
