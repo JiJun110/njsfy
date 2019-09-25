@@ -1,8 +1,13 @@
 package com.gx.soft.njsfy_index.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.gx.core.hibernate.PropertyFilter;
+import com.gx.core.util.ZipUtils;
+import com.gx.soft.common.util.FileUtil;
+import com.gx.soft.medicineTree.persistence.domain.Attachment;
 import com.gx.soft.medicineTree.persistence.domain.MedicineInstance;
 import com.gx.soft.medicineTree.persistence.domain.MedicineType;
+import com.gx.soft.medicineTree.persistence.manager.AttachMentManager;
 import com.gx.soft.medicineTree.persistence.manager.MedicineInstanceManager;
 import com.gx.soft.medicineTree.persistence.manager.MedicineTypeManager;
 import com.gx.soft.sys.vo.ZtreeData;
@@ -13,7 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +40,8 @@ public class NjsfyWebController {
     private List<MedicineInstance>medicineInstanceList1=new ArrayList<>();
     @Autowired
     private MedicineTypeManager medicineTypeManager;
+    @Autowired
+    private AttachMentManager attachMentManager;
     private String name=null;
     private int pageNumber=0;
     private int numberSize=0;
@@ -120,13 +134,13 @@ public class NjsfyWebController {
         List<MedicineType> visList = medicineTypeManager.find("createTime", true, propertyFilters);
         List<ZtreeData> ztreeData = new ArrayList<ZtreeData>();
         for (MedicineType vis : visList) {
-            ZtreeData zData = new ZtreeData(vis.getRowId(), vis.getMedicineParentTypeId(), vis.getMedicineTypeName(), vis.getMedicineTypeName());
+            ZtreeData zData = new ZtreeData(vis.getRowId(), vis.getMedicineParentTypeId(), vis.getMedicineTypeName(), vis.getMedicineTypeName(),false);
             String hql="from MedicineInstance where medicineType=?";
             List<MedicineInstance>medicineInstanceList=new ArrayList<>();
             medicineInstanceList=medicineInstanceManager.find(hql,vis.getRowId());
             if(medicineInstanceList.size()>0){
                 for(MedicineInstance medicineInstance:medicineInstanceList){
-                    ZtreeData zData1 = new ZtreeData(medicineInstance.getRowId(), vis.getRowId(), medicineInstance.getMedicineName(), medicineInstance.getMedicineName());
+                    ZtreeData zData1 = new ZtreeData(medicineInstance.getRowId(), vis.getRowId(), medicineInstance.getMedicineName(), medicineInstance.getMedicineName(),true);
                     ztreeData.add(zData1);
                 }
             }
@@ -134,4 +148,75 @@ public class NjsfyWebController {
         }
         return ztreeData;
     }
+    @RequestMapping("medicine-instance")
+    public String getMedicineInstance(String rowId,Model model){
+        MedicineInstance medicineInstance=null;
+        medicineInstance=medicineInstanceManager.get(rowId);
+        List<Attachment>attachmentList=new ArrayList<>();
+        attachmentList=attachMentManager.findBy("relationId",rowId);
+        model.addAttribute("medicineInstance",medicineInstance);
+        model.addAttribute("attachmentList",attachmentList);
+        return  "njsfy_index/detailed";
+
+    }
+    /**
+     * 批量下载
+     * @param request 请求
+     * @param response 返回
+     */
+    @RequestMapping(value = "fileDownload-attach")
+    public String  batchDownloadFiles(String []rowIdList, HttpServletRequest request, HttpServletResponse response) {
+
+        //读取前端传来json字段
+        String[] ids = rowIdList;
+    /*    String jsonString = request.getParameter("paperInfo");*/
+
+        //获取web项目根目录
+        String fileSaveRootPath = request.getSession().getServletContext().getRealPath("/");
+
+        //创建zip文件并返回zip文件路径
+        List<String>filaPathList=new ArrayList<>();
+        List<String>fileNameList=new ArrayList<>();
+        for(String id:ids){
+            Attachment fileRecord = attachMentManager.get(id);
+            if(fileRecord!=null){
+                filaPathList.add(fileRecord.getFilePath());
+                fileNameList.add(fileRecord.getFileName());
+            }
+        }
+        if(filaPathList.size()==1){
+            FileUtil fileHelper = new FileUtil();
+            fileHelper.downloadFile(filaPathList.get(0), request, response, fileNameList.get(0));
+        }else{
+            String zipPath = new ZipUtils().createZipAndReturnPath(JSONObject.toJSONString(filaPathList), JSONObject.toJSONString(fileNameList),fileSaveRootPath);
+            try {
+                response.reset();
+                response.setCharacterEncoding("UTF-8");
+                response.setContentType("application/zip;charset=utf-8");
+                response.setHeader("Content-Disposition", "attachment;filename=Papers.zip");
+                System.out.println(response.getHeader("Content-Disposition"));
+
+                //开始下载
+                BufferedInputStream is = new BufferedInputStream(new FileInputStream(new File(zipPath)));
+                BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+
+                byte[] buff = new byte[1024];
+                int len = 0;
+                while ((len = is.read(buff, 0, buff.length)) != -1) {
+                    out.write(buff, 0, len);
+                }
+                out.close();
+                out.flush();
+                is.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Map<String, Object> resMap = new HashMap<String, Object>();
+        resMap.put("statusCode", "200");
+        resMap.put("message", "下载成功");
+        return  "njsfy_index/detailed";
+    }
+
 }

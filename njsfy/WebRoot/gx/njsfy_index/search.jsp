@@ -15,19 +15,16 @@
 
 </style>
 <script type="text/javascript">
-    function addStyle() {
-        alert("qwe")
+    function getMedicineInstance(rowId) {
+        location.href="<%=basePath%>njsfy-index/medicine-instance.do?rowId="+rowId;
     }
     function change1() {
         $(" #two2 ").val("")
         $(" #three3 ").val("")
-
     }
     function change2() {
         $(" #one1 ").val("")
         $(" #three3 ").val("")
-
-
     }
     function change3() {
         $(" #two2 ").val("")
@@ -101,9 +98,9 @@
             <div class="resulttable" style="clear:both">
                 <ul class="list">
                     <c:forEach items="${medicineInstanceList}" var="bean" varStatus="status">
-                        <li>
+                        <li onclick="getMedicineInstance('${bean.rowId}')">
                             <div >
-                                <h3 class="resultlink" ><a href="#" >${bean.changShang} </a> </h3>
+                                <h3 class="resultlink" ><a  >${bean.changShang} </a> </h3>
                                 <p> <b>商品名：</b>${bean.medicineName}&nbsp;&nbsp;&nbsp;&nbsp; <b>成份：</b> <br/>
                                     <b>适应症：</b>${bean.syz}</p>
                             </div>
