@@ -11,6 +11,12 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/images/demo.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/images/zTreeStyle.css" type="text/css">
 <script src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.ztree.core.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
+<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.min.js"></script>
+
+<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/viewer-jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/viewer.min.css"></script>
+
 <style>
     ul.ztree {
         margin-left: 0px;
@@ -23,7 +29,12 @@
         overflow-x: auto;
     }
 </style>
+<script>
+    $(function () {
+        $('.viewer1').viewer();
 
+    })
+</script>
 <script>
     var rowIdList=new Array();
     function allClick() {
@@ -53,9 +64,19 @@
         }
     }
     function downloadAttach() {
-        location.href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList="+rowIdList;
+        if(rowIdList.length>0){
+            location.href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList="+rowIdList;
+        }
+
+    }
+    function lookAttach(rowId) {
+        location.href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList="+rowId;
     }
 </script>
+<style>
+
+
+</style>
 
     <!-- for doc end -->
 <div class="detail">
@@ -144,12 +165,14 @@
                             <td align="center">${status.index+1}</td>
                             <td>${bean.fileName}</td>
                             <td align="center">${bean.uploadTime}</td>
-                            <td align="center"><input name="" type="button" value="点击查看" class="button" onclick="lookAttach()" /></td>
+                            <td align="center">
+                               <%--<input name="" class="lightbox" type="button"  value="点击查看" class="button" onclick="lookAttach('${bean.rowId}')" />--%>
+                                <%--<img class="viewer1"    src="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}"></img>--%>
+                                <a class="lightbox"    rel="lightbox" href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}"   >BBBB</a>
+
+                            </td>
                         </tr>
-
                     </c:forEach>
-
-
                 </table>
             </div>
         </div>
@@ -213,8 +236,19 @@
     }
     function onClick(event, treeId, treeNode, clickFlag) {
 
-        console.log("treeNode：",treeNode.id);
-        location.href="<%=basePath%>njsfy-index/medicine-instance.do?rowId="+treeNode.id;
+      /*  console.log("treeNode：",treeNode.id);
+        $.ajax({
+            url:"<%=basePath%>njsfy-index/medicine-instance.do?rowId="+treeNode.id,
+            type:'get',
+            async:false,
+            cache:false,
+            dataType:'json',
+            success:function(json){
+                $("#div1").load("/try/ajax/demo_test.txt");
+                console.log(json)
+            }
+        });*/
+       location.href="<%=basePath%>njsfy-index/medicine-instance.do?rowId="+treeNode.id;
 
     }
     function showLog(str) {
@@ -237,4 +271,13 @@
     });
 
 </SCRIPT>
+<script>
+    //图片放大预览
+    $(function () {
+        $('.lightbox').lightbox();
+    })
 
+</script>
+<script>
+
+</script>

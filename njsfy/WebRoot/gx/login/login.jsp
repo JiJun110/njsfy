@@ -25,7 +25,7 @@
 }
 
 body {
-	background: url(../gx/images/loginbg_0801.jpg) no-repeat center center
+	background: url(../gx/images/loginbg_08.jpg) no-repeat center center
 		fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;

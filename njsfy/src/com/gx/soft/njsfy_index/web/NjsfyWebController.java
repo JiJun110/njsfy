@@ -24,10 +24,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by adminstrator on 2019/9/23.
@@ -48,7 +45,7 @@ public class NjsfyWebController {
     @Autowired
     private MedicineInstanceManager medicineInstanceManager;
     @RequestMapping("home")
-    public String home(@RequestParam Map<String, Object> parameterMap,String searchMedicine, String searchYl, String searchSyz, Model model){
+    public String home(@RequestParam Map<String, Object> parameterMap,String searchMedicine, String searchYl, String searchSyz,String bolS, Model model){
         medicineInstanceList1=new ArrayList<>();
         this.name=null;
         this.pageNumber=0;
@@ -72,6 +69,9 @@ public class NjsfyWebController {
             model.addAttribute("serachName",searchSyz);
             this.name=searchSyz;
             medicineInstanceList=medicineInstanceManager.find(hql,"%"+searchSyz+"%");
+        }
+        if(bolS!=null && bolS.equals("bol")){
+            medicineInstanceList=medicineInstanceManager.getAll();
         }
         if(medicineInstanceList.size()>0){
             if(medicineInstanceList.size()>10) {
@@ -166,6 +166,7 @@ public class NjsfyWebController {
      */
     @RequestMapping(value = "fileDownload-attach")
     public String  batchDownloadFiles(String []rowIdList, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println(new Date().getTime());
 
         //读取前端传来json字段
         String[] ids = rowIdList;
@@ -218,5 +219,11 @@ public class NjsfyWebController {
         resMap.put("message", "下载成功");
         return  "njsfy_index/detailed";
     }
+    @RequestMapping("medicineType-ShuoYing")
+    public String medicineTypeShuoYing(Model model){
+        return "njsfy_index/detailed";
+    }
+
+
 
 }

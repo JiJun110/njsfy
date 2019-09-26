@@ -10,6 +10,12 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery-1.7.2.min.js"></script>
     <link href="<%=request.getContextPath()%>/gx/njsfy_index/images/css.css" rel="stylesheet">
     <script type="text/javascript">
+        function medicineTypeShuoYing() {
+            location.href="<%=basePath%>njsfy-index/medicineType-ShuoYing.do";
+        }
+        function shiyingzheng() {
+            location.href="<%=basePath%>njsfy-index/home.do?bolS=bol";
+        }
         function change1() {
             $(" #two2 ").val("")
             $(" #three3 ").val("")
@@ -85,7 +91,7 @@
 </div>
 <div class="content">
     <div class="contentrow">
-        <div class="contentdiv">
+        <div class="contentdiv" onclick="medicineTypeShuoYing()">
             <div class="content_pic"><img src="images/img_menu1.png" width="64" height="64" /></div>
             <div class="content_words">
                 <p class="title">药物类别索引
@@ -96,10 +102,10 @@
         </div>
     </div>
     <div class="contentrow">
-        <div class="contentdiv">
+        <div class="contentdiv" onclick="shiyingzheng()">
             <div class="content_pic"><img src="images/img_menu2.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">药物类别索引
+                <p class="title">适应症索引
                 </p>
                 <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
                 </p>
@@ -107,10 +113,10 @@
         </div>
     </div>
     <div class="contentrow">
-        <div class="contentdiv">
+        <div class="contentdiv" onclick="shiyingzheng()">
             <div class="content_pic"><img src="images/img_menu3.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">药物类别索引
+                <p class="title">儿童哺乳期
                 </p>
                 <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
                 </p>
@@ -119,10 +125,10 @@
     </div>
     <!--第二行-->
     <div class="contentrow">
-        <div class="contentdiv">
+        <div class="contentdiv" onclick="shiyingzheng()">
             <div class="content_pic"><img src="images/img_menu4.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">药物类别索引
+                <p class="title">医药范围
                 </p>
                 <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
                 </p>
@@ -130,10 +136,10 @@
         </div>
     </div>
     <div class="contentrow">
-        <div class="contentdiv">
+        <div class="contentdiv" onclick="shiyingzheng()">
             <div class="content_pic"><img src="images/img_menu5.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">药物类别索引
+                <p class="title">厂商索引
                 </p>
                 <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
                 </p>
@@ -141,10 +147,10 @@
         </div>
     </div>
     <div class="contentrow">
-        <div class="contentdiv">
+        <div class="contentdiv" onclick="shiyingzheng()">
             <div class="content_pic"><img src="images/img_menu6.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">药物类别索引
+                <p class="title">其他
                 </p>
                 <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
                 </p>
