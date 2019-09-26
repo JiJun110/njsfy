@@ -12,6 +12,24 @@ public class ZtreeData {
 	private String name;
 	private String title;
 	private Boolean click;
+	private Boolean open;
+
+	public ZtreeData(String id, String pId, String name, String title, Boolean click, Boolean open) {
+		this.id = id;
+		this.pId = pId;
+		this.name = name;
+		this.title = title;
+		this.click = click;
+		this.open = open;
+	}
+
+	public Boolean getOpen() {
+		return open;
+	}
+
+	public void setOpen(Boolean open) {
+		this.open = open;
+	}
 
 	public ZtreeData(String id, String pId, String name, String title, Boolean click) {
 		this.id = id;

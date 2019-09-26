@@ -1,5 +1,5 @@
 .searchbg{ background: #699a3a url(img_bannerbg.jpg)no-repeat right top fixed; width:100%; min-height:538px; padding:0px; margin:0px;}
-body{padding:0px; margin:0px; background:#f1f1f1;word-wrap:break-word; font-size:12px;}
+body{padding:0px; margin:0px; background:#f1f1f1;word-wrap:break-word; font-size:12px;font-family:"微软雅黑";}
 .searchbox_bg{ background: url(img_top.png)no-repeat left top fixed; width:100%; min-height:338px; padding:200px 0px 0px 0px; margin:0px;}
 a,img{border:0; color:#333; text-decoration: none;}
 ul,li,p{ padding:0px; margin:0px;}
@@ -7,7 +7,7 @@ ul,li,p{ padding:0px; margin:0px;}
 .searchbox{width:850px;height:80px;margin:0px auto 0 auto;}
 .searchbox ul{ height:35px; width:500px; list-style:none; margin-left:20px}
 .searchbox ul li{ float:left}
-.searchbox ul li a{ float:left; line-height:45px; padding:0 20px; text-decoration:none; color:#d6d5d5; font-size:18px;}
+.searchbox ul li a{ float:left; line-height:48px; padding:0 20px; text-decoration:none; color:#d6d5d5; font-size:18px;}
 .searchbox ul li .style1{ background: url(img_sj.png) bottom center no-repeat; color:#fff}
 .searchbox ul li .style2{ background: url(img_sj.png) bottom center no-repeat;color:#fff}
 .searchbox ul li .style3{ background: url(img_sj.png) bottom center no-repeat;color:#fff}

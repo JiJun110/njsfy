@@ -134,13 +134,13 @@ public class NjsfyWebController {
         List<MedicineType> visList = medicineTypeManager.find("createTime", true, propertyFilters);
         List<ZtreeData> ztreeData = new ArrayList<ZtreeData>();
         for (MedicineType vis : visList) {
-            ZtreeData zData = new ZtreeData(vis.getRowId(), vis.getMedicineParentTypeId(), vis.getMedicineTypeName(), vis.getMedicineTypeName(),false);
+            ZtreeData zData = new ZtreeData(vis.getRowId(), vis.getMedicineParentTypeId(), vis.getMedicineTypeName(), vis.getMedicineTypeName(),false,true);
             String hql="from MedicineInstance where medicineType=?";
             List<MedicineInstance>medicineInstanceList=new ArrayList<>();
             medicineInstanceList=medicineInstanceManager.find(hql,vis.getRowId());
             if(medicineInstanceList.size()>0){
                 for(MedicineInstance medicineInstance:medicineInstanceList){
-                    ZtreeData zData1 = new ZtreeData(medicineInstance.getRowId(), vis.getRowId(), medicineInstance.getMedicineName(), medicineInstance.getMedicineName(),true);
+                    ZtreeData zData1 = new ZtreeData(medicineInstance.getRowId(), vis.getRowId(), medicineInstance.getMedicineName(), medicineInstance.getMedicineName(),true,true);
                     ztreeData.add(zData1);
                 }
             }
@@ -157,6 +157,17 @@ public class NjsfyWebController {
         model.addAttribute("medicineInstance",medicineInstance);
         model.addAttribute("attachmentList",attachmentList);
         return  "njsfy_index/detailed";
+
+    }
+    @RequestMapping("medicine-instance2")
+    public String getMedicineInstance2(String rowId,Model model){
+        MedicineInstance medicineInstance=null;
+        medicineInstance=medicineInstanceManager.get(rowId);
+        List<Attachment>attachmentList=new ArrayList<>();
+        attachmentList=attachMentManager.findBy("relationId",rowId);
+        model.addAttribute("medicineInstance",medicineInstance);
+        model.addAttribute("attachmentList",attachmentList);
+        return  "njsfy_index/right";
 
     }
     @RequestMapping("medicine-instance1")
