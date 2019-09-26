@@ -267,7 +267,7 @@ $(function(){
             <button type="button" class="bjui-navbar-toggle btn-default" data-toggle="collapse" data-target="#bjui-navbar-collapse">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="bjui-navbar-logo" href="#"><img src="<%=request.getContextPath()%>/gx/images/logo.png"></a>
+            <a class="bjui-navbar-logo" href="#"><img src="<%=request.getContextPath()%>/gx/images/logo02.png"></a>
         </div>
         <nav id="bjui-navbar-collapse">
             <ul class="bjui-navbar-right">

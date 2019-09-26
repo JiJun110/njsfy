@@ -4,18 +4,18 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<script src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery-1.7.2.min.js"></script>
 
-<script src="<%=request.getContextPath()%>/gx/BJUI/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/lightbox-plus-jquery.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
+
 
 <link href="<%=request.getContextPath()%>/gx/njsfy_index/images/css.css" rel="stylesheet">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/images/demo.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/images/zTreeStyle.css" type="text/css">
 <script src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.ztree.core.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
-<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.min.js"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/viewer-jquery.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/viewer.min.css"></script>
+
 
 <style>
     ul.ztree {
@@ -29,12 +29,7 @@
         overflow-x: auto;
     }
 </style>
-<script>
-    $(function () {
-        $('.viewer1').viewer();
 
-    })
-</script>
 <script>
     var rowIdList=new Array();
     function allClick() {
@@ -163,12 +158,12 @@
                         <tr>
                             <td align="center"><input   id="${bean.rowId}" class="selectedCheck" name="Fruit" type="checkbox" value="${bean.rowId}" onclick="selectedOne('${bean.rowId}')"/> </td>
                             <td align="center">${status.index+1}</td>
-                            <td>${bean.fileName}</td>
+                            <td align="center">${bean.fileName}</td>
                             <td align="center">${bean.uploadTime}</td>
                             <td align="center">
-                               <%--<input name="" class="lightbox" type="button"  value="点击查看" class="button" onclick="lookAttach('${bean.rowId}')" />--%>
-                                <%--<img class="viewer1"    src="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}"></img>--%>
-                                <a class="lightbox"    rel="lightbox" href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}"   >BBBB</a>
+                                   <a  href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" data-lightbox="image-1" data-title="My caption">
+                                       <img  src="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" width="40" height="40" />
+                                   </a>
 
                             </td>
                         </tr>
@@ -271,13 +266,11 @@
     });
 
 </SCRIPT>
-<script>
-    //图片放大预览
-    $(function () {
-        $('.lightbox').lightbox();
-    })
 
-</script>
-<script>
-
+<script >
+    jQuery(document).ready(function($){
+        $("img").click(function(){
+            lightbox();
+        });
+    });
 </script>

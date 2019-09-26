@@ -159,6 +159,22 @@ public class NjsfyWebController {
         return  "njsfy_index/detailed";
 
     }
+    @RequestMapping("medicine-instance1")
+    @ResponseBody
+    public JSONObject getMedicineInstance1(String rowId,Model model){
+        MedicineInstance medicineInstance=null;
+        medicineInstance=medicineInstanceManager.get(rowId);
+        List<Attachment>attachmentList=new ArrayList<>();
+        attachmentList=attachMentManager.findBy("relationId",rowId);
+        model.addAttribute("medicineInstance",medicineInstance);
+        model.addAttribute("attachmentList",attachmentList);
+        HashMap<String,Object>map=new HashMap<>();
+        map.put("medicineInstance",medicineInstance);
+        map.put("attachmentList",attachmentList);
+
+        return (JSONObject) JSONObject.toJSON(map);
+
+    }
     /**
      * 批量下载
      * @param request 请求
