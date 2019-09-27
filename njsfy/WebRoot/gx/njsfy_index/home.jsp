@@ -18,6 +18,10 @@
             window.open("<%=basePath%>njsfy-index/home.do?bolS=bol");
             /*location.href="<%=basePath%>njsfy-index/home.do?bolS=bol";*/
         }
+        function changShang() {
+            window.open("<%=basePath%>njsfy-index/changShang.do");
+            /*location.href="<%=basePath%>njsfy-index/home.do?bolS=bol";*/
+        }
         function change1() {
             $(" #two2 ").val("")
             $(" #three3 ").val("")
@@ -138,7 +142,7 @@
         </div>
     </div>
     <div class="contentrow">
-        <div class="contentdiv" onclick="shiyingzheng()">
+        <div class="contentdiv" onclick="changShang()">
             <div class="content_pic"><img src="images/img_menu5.png" width="64" height="64" /></div>
             <div class="content_words">
                 <p class="title">厂商索引
@@ -159,6 +163,7 @@
             </div>
         </div>
     </div>
+    <div style="clear:both; display:block; width:100%; text-align:center; padding-top:20px;"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_bottom.jpg" width="278" height="79" /></div>
 </div>
 </body>
 </html>

@@ -167,6 +167,7 @@
             cache:false,
             dataType:'json',
             success:function(json){
+
                 document.getElementById('ifrmname1').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+json.medicineInstance.rowId)
 
                 /*document.getElementById('ifrmname2').contentWindow.location.replace("<%=request.getContextPath()%>/gx/njsfy_index/right.jsp?warn="+(json.medicineInstance.warn==null?"":json.medicineInstance.warn)+"&syz="+(json.medicineInstance.syz==null?"":json.medicineInstance.syz)+"&yfyl="+(json.medicineInstance.yfyl==null?"":json.medicineInstance.yfyl)+"&tsCcTj="+(json.medicineInstance.tsCcTj==null?"":json.medicineInstance.tsCcTj)+"&cSmSy="+(json.medicineInstance.cSmSy==null?"":json.medicineInstance.cSmSy)+"&attachmentList="+(json.attachmentList));*/

@@ -269,6 +269,13 @@ public class NjsfyWebController {
         return "njsfy_index/detailed";
     }
 
+    @RequestMapping("changShang")
+    public String changShang(Model model){
+        List<String>changShangList=medicineInstanceManager.find("SELECT DISTINCT changShang  from  MedicineInstance");
+        model.addAttribute("changShangList",changShangList);
+        return "njsfy_index/changShang";
+    }
+
 
 
 }
