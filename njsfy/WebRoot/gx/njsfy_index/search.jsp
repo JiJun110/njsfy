@@ -16,7 +16,8 @@
 </style>
 <script type="text/javascript">
     function getMedicineInstance(rowId) {
-        location.href="<%=basePath%>njsfy-index/medicine-instance.do?rowId="+rowId;
+        window.open("<%=basePath%>njsfy-index/medicine-instance.do?rowId="+rowId);
+      /*  location.href="<%=basePath%>njsfy-index/medicine-instance.do?rowId="+rowId;*/
     }
     function change1() {
         $(" #two2 ").val("")

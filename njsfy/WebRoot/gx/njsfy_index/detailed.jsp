@@ -3,7 +3,9 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+
 %>
+<title>南京市妇幼</title>
 
 <script src="<%=request.getContextPath()%>/gx/BJUI/js/jquery-1.7.2.min.js"></script>
 
@@ -17,12 +19,13 @@
     ul.ztree {
         margin-left: 0px;
         margin-top: -2px;
-        border: 1px solid #617775;
-        background: #f0f6e4;
+        border: 0px solid #617775;
+     /*   background: #f0f6e4;*/
         width: 270px;
-        height: 500px;
+        /*height: 500px;*/
+/*
         overflow-y: scroll;
-        overflow-x: auto;
+        overflow-x: auto;*/
     }
 </style>
 <script>
@@ -76,19 +79,34 @@
 <iframe id="ifrmname1" width="100%" height="218px" frameborder=0 scrolling=no src="<%=request.getContextPath()%>/gx/njsfy_index/top.jsp"></iframe>
 </div>
 <div class="content">
-<div class="detail_left"><div class="content_wrap">
-            <div class="zTreeDemoBackground left">
-                <ul id="treeDemo" class="ztree"></ul>
-            </div>
-        </div>
+<div class="detail_left">
+
+    <table cellpadding="0" cellspacing="0" width="100%" style="min-height: 600px">
+        <tr>
+            <td style="background:#FFF;box-shadow:0  2px 10px rgba(0,0,0,0.15); "><div class="content_wrap">
+                <div class="zTreeDemoBackground left">
+                    <ul id="treeDemo" class="ztree" ></ul>
+                </div>
+            </div></td>
+        </tr>
+    </table>
+
 </div>
 <div class="detail_right"><iframe id="ifrmname2" width="100%" height="1100px"  frameborder=0 scrolling=no src="<%=request.getContextPath()%>/gx/njsfy_index/right.jsp"></iframe></div>
 </div>
 <input type="hidden" id="getId" >
     <!-- for doc end -->
 <script>
+
+
     var jsont=null;
     $(function(){
+        if('${medicineInstance.rowId}'!=null && '${medicineInstance.rowId}'.length>0){
+            document.getElementById('ifrmname2').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+'${medicineInstance.rowId}')
+
+            document.getElementById('ifrmname1').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+'${medicineInstance.rowId}')
+
+        }
 
         $.ajax({
             url:'<%=basePath%>njsfy-index/medicineTree-tree.do',
@@ -149,8 +167,7 @@
             cache:false,
             dataType:'json',
             success:function(json){
-                document.getElementById('ifrmname1').contentWindow.location.replace("<%=request.getContextPath()%>/gx/njsfy_index/top.jsp?medicineName="+(json.medicineInstance.medicineName==null?"":json.medicineInstance.medicineName)+"&changShang="+(json.medicineInstance.changShang==null?"":json.medicineInstance.changShang)+"&price="+(json.medicineInstance.price==null?"":json.medicineInstance.price)+"&brqAqdj="+(json.medicineInstance.brqAqdj==null?'':json.medicineInstance.brqAqdj)+"&yqAqdj="+(json.medicineInstance.yqAqdj==null?"":json.medicineInstance.yqAqdj)+"&ybType="+(json.medicineInstance.ybType==null?"":json.medicineInstance.ybType)+"&isJy="+(json.medicineInstance.isJy==null?"":json.medicineInstance.isJy)+"&isGwy="+(json.medicineInstance.isGwy==null?"":json.medicineInstance.isGwy));
-                /*document.getElementById('ifrmname1').contentWindow.location.replace("<%=request.getContextPath()%>/gx/njsfy_index/search.jsp");*/
+                document.getElementById('ifrmname1').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+json.medicineInstance.rowId)
 
                 /*document.getElementById('ifrmname2').contentWindow.location.replace("<%=request.getContextPath()%>/gx/njsfy_index/right.jsp?warn="+(json.medicineInstance.warn==null?"":json.medicineInstance.warn)+"&syz="+(json.medicineInstance.syz==null?"":json.medicineInstance.syz)+"&yfyl="+(json.medicineInstance.yfyl==null?"":json.medicineInstance.yfyl)+"&tsCcTj="+(json.medicineInstance.tsCcTj==null?"":json.medicineInstance.tsCcTj)+"&cSmSy="+(json.medicineInstance.cSmSy==null?"":json.medicineInstance.cSmSy)+"&attachmentList="+(json.attachmentList));*/
                 document.getElementById('ifrmname2').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+json.medicineInstance.rowId)

@@ -134,7 +134,14 @@ public class NjsfyWebController {
         List<MedicineType> visList = medicineTypeManager.find("createTime", true, propertyFilters);
         List<ZtreeData> ztreeData = new ArrayList<ZtreeData>();
         for (MedicineType vis : visList) {
-            ZtreeData zData = new ZtreeData(vis.getRowId(), vis.getMedicineParentTypeId(), vis.getMedicineTypeName(), vis.getMedicineTypeName(),false,true);
+            ZtreeData zData=null;
+            if(vis.getMedicineParentTypeId()!=null && vis.getMedicineParentTypeId().equals("root")){
+                 zData = new ZtreeData(vis.getRowId(), vis.getMedicineParentTypeId(), vis.getMedicineTypeName(), vis.getMedicineTypeName(),false,true);
+
+            }else{
+                 zData = new ZtreeData(vis.getRowId(), vis.getMedicineParentTypeId(), vis.getMedicineTypeName(), vis.getMedicineTypeName(),false,false);
+
+            }
             String hql="from MedicineInstance where medicineType=?";
             List<MedicineInstance>medicineInstanceList=new ArrayList<>();
             medicineInstanceList=medicineInstanceManager.find(hql,vis.getRowId());
@@ -168,6 +175,17 @@ public class NjsfyWebController {
         model.addAttribute("medicineInstance",medicineInstance);
         model.addAttribute("attachmentList",attachmentList);
         return  "njsfy_index/right";
+
+    }
+    @RequestMapping("medicine-instance3")
+    public String getMedicineInstance3(String rowId,Model model){
+        MedicineInstance medicineInstance=null;
+        medicineInstance=medicineInstanceManager.get(rowId);
+        List<Attachment>attachmentList=new ArrayList<>();
+        attachmentList=attachMentManager.findBy("relationId",rowId);
+        model.addAttribute("medicineInstance",medicineInstance);
+        model.addAttribute("attachmentList",attachmentList);
+        return  "njsfy_index/top";
 
     }
     @RequestMapping("medicine-instance1")

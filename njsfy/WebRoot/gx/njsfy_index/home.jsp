@@ -11,10 +11,12 @@
     <link href="<%=request.getContextPath()%>/gx/njsfy_index/images/css.css" rel="stylesheet">
     <script type="text/javascript">
         function medicineTypeShuoYing() {
-            location.href="<%=basePath%>njsfy-index/medicineType-ShuoYing.do";
+            window.open("<%=basePath%>njsfy-index/medicineType-ShuoYing.do");
+           /*location.href="<%=basePath%>njsfy-index/medicineType-ShuoYing.do";*/
         }
         function shiyingzheng() {
-            location.href="<%=basePath%>njsfy-index/home.do?bolS=bol";
+            window.open("<%=basePath%>njsfy-index/home.do?bolS=bol");
+            /*location.href="<%=basePath%>njsfy-index/home.do?bolS=bol";*/
         }
         function change1() {
             $(" #two2 ").val("")

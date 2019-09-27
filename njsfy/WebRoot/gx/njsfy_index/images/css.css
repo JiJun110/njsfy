@@ -48,7 +48,7 @@ ul,li,p{ padding:0px; margin:0px;}
 .medicine{ background:#e27b6e;}
 .risk{ background:#4bba9d;}
 .expense{ background:#c637af;}
-.detail_left{ width:275px; background:#FFF;box-shadow:0  2px 10px rgba(0,0,0,0.15); float:left; min-height:100px;}
+.detail_left{ width:275px; /*background:#FFF;box-shadow:0  2px 10px rgba(0,0,0,0.15);*/ float:left; min-height:100px;}
 .detail_right{ width:905px;  float:left; min-height:100px; margin-left:20px}
 .detail_contain{background:#FFF;box-shadow:0  2px 10px rgba(0,0,0,0.15); width:905px;min-height:100px; padding-bottom:10px; }
 .detail_title{ font-weight: bold; color:#333; padding:20px 10px 10px 10px; border-bottom:1px #f1f1f1 solid; margin-bottom:10px; font-size:14px}
