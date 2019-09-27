@@ -80,23 +80,23 @@
 <div class="detail_contain">
     <div class="detail_title">
         <span class="line"></span>黑框警示
-        <p class="explain">${medicineInstance.warn}</p>
+        <p class="explain">${medicineInstance.warn==null?"暂无信息":medicineInstance.warn}</p>
     </div>
     <div class="detail_title">
         <span class="line"></span>适应症
-        <p class="explain">${medicineInstance.syz}</p>
+        <p class="explain">${medicineInstance.syz==null?"暂无信息":medicineInstance.syz}</p>
     </div>
     <div class="detail_title">
         <span class="line"></span>用法用量
-        <p class="explain">${medicineInstance.yfyl}</p>
+        <p class="explain">${medicineInstance.yfyl==null?"暂无信息":medicineInstance.yfyl}</p>
     </div>
     <div class="detail_title">
         <span class="line"></span>特殊存储条件
-        <p class="explain">${medicineInstance.tsCcTj}</p>
+        <p class="explain">${medicineInstance.tsCcTj==null?"暂无信息":medicineInstance.tsCcTj}</p>
     </div>
     <div class="detail_title">
         <span class="line"></span>超说明书使用
-        <p class="explain">${medicineInstance.cSmSy}</p>
+        <p class="explain">${medicineInstance.cSmSy==null?"暂无信息":medicineInstance.cSmSy}</p>
     </div>
 </div>
 <div class="detail_contain" style="margin-top:20px;">

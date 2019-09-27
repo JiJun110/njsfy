@@ -91,6 +91,8 @@
     <div class="searchC">
         <div class="result">
             <div class="resulttitle"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_searchs.png" width="30" height="30" align="absmiddle" /> 查询结果</div>
+
+
             <div class="resultnumber">搜索到符合 <span class="red">${serachName}</span> 的结果约<span class="red">${count}</span>条</div>
         </div>
         <c:set var="bol" scope="session" value="${count}"/>
