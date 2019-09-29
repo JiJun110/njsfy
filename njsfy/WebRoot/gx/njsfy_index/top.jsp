@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
 <script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.min.js"></script>
 <style>
-    ul.ztree {
+  /*  ul.ztree {
         margin-left: 0px;
         margin-top: -2px;
         border: 1px solid #617775;
@@ -23,7 +23,7 @@
         height: 500px;
         overflow-y: scroll;
         overflow-x: auto;
-    }
+    }*/
 </style>
 <script>
     //图片放大预览

@@ -116,7 +116,6 @@ public class NjsfyWebController {
             }else{
                 model.addAttribute("count",0);
                 this.numberSize=0;
-
             }
         }else{
             if(medicineInstanceList.size()>0){

@@ -20,12 +20,10 @@
         margin-left: 0px;
         margin-top: 12px;
         border: 0px solid #617775;
-     /*   background: #f0f6e4;*/
+        background: #fff;
         width: 270px;
-        /*height: 500px;*/
-/*
-        overflow-y: scroll;
-        overflow-x: auto;*/
+        height: 100%;
+
     }
 </style>
 <script>
@@ -101,7 +99,7 @@
     var jsont=null;
     $(function(){
        /* if('${medicineInstance.rowId}'!=null && '${medicineInstance.rowId}'.length>0){*/
-            $("#ifrmname2").load("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+'${medicineInstance.rowId}', function() {
+           $("#ifrmname2").load("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+'${medicineInstance.rowId}', function() {
             });
             $("#ifrmname1").load("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+'${medicineInstance.rowId}', function() {
             });

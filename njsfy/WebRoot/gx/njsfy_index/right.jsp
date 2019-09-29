@@ -18,7 +18,7 @@
 
 
 <style>
-    ul.ztree {
+  /*  ul.ztree {
         margin-left: 0px;
         margin-top: -2px;
         border: 1px solid #617775;
@@ -27,7 +27,7 @@
         height: 550px;
         overflow-y: scroll;
         overflow-x: auto;
-    }
+    }*/
 </style>
 
 <script>
