@@ -11,6 +11,7 @@ ul,li,p{ padding:0px; margin:0px;}
 .searchbox ul li .style1{ background: url(img_sj.png) bottom center no-repeat; color:#fff}
 .searchbox ul li .style2{ background: url(img_sj.png) bottom center no-repeat;color:#fff}
 .searchbox ul li .style3{ background: url(img_sj.png) bottom center no-repeat;color:#fff}
+.searchbox ul li .style4{ background: url(img_sj.png) bottom center no-repeat;color:#fff}
 .bodys input{ height:55px;line-height:55px;width:650px;padding:0 10px;float:left;}
 .bodys .one{ border:#000 0px solid}
 .bodys .two{ border:#f00 0px solid}

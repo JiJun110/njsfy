@@ -50,7 +50,7 @@ public class NjsfyWebController {
     @Autowired
     private MedicineInstanceManager medicineInstanceManager;
     @RequestMapping("home")
-    public String home(@RequestParam Map<String, Object> parameterMap,String searchMedicine, String searchYl, String searchSyz,String bolS,String changShangName, String bolC,Model model){
+    public String home(@RequestParam Map<String, Object> parameterMap,String searchCS,String searchMedicine, String searchYl, String searchSyz,String bolS,String changShangName, String bolC,Model model){
         medicineInstanceList1=new ArrayList<>();
         changShangList1=new ArrayList<>();
         this.name=null;
@@ -64,6 +64,12 @@ public class NjsfyWebController {
             model.addAttribute("serachName",searchMedicine);
             this.name=searchMedicine;
             medicineInstanceList=medicineInstanceManager.find(hql,t1);
+
+        }else if(searchCS!=null && searchCS.length()>0){
+            String hql="from MedicineInstance where changShang like ?";
+            model.addAttribute("serachName",searchCS);
+            this.name=searchCS;
+            medicineInstanceList=medicineInstanceManager.find(hql,"%"+searchCS+"%");
 
         }else if(searchYl !=null && searchYl.length()>0){
             String hql="from MedicineInstance where yfyl like ?";
@@ -146,6 +152,7 @@ public class NjsfyWebController {
     @RequestMapping(value = "chage-number", produces = "application/json")
 
     public String chageCurentNumber(int number,String bolNum,String bolL,String bolR,String bolRR,Model model){
+        Boolean bolNext=true;
         if(medicineInstanceList1.size()>0){
             if(number!=pageNumber && medicineInstanceList1.size()<10){
                 model.addAttribute("medicineInstanceList",medicineInstanceList1);
@@ -159,11 +166,17 @@ public class NjsfyWebController {
 
         }else if(changShangList1.size()>0){
             model.addAttribute("bolC","bol");
-            if(number!=pageNumber && changShangList1.size()>0){
+            if(bolL!=null && bolL.equals("bolL") && number>=2){
+                bolNext=false;
+                model.addAttribute("medicineInstanceList",changShangList1.subList((number-2)*10,(number-1)*10));
+
+            }else if(number!=pageNumber && changShangList1.size()>0){
                 model.addAttribute("medicineInstanceList",changShangList1.subList((number-1)*10,number*10));
             }else{
                 model.addAttribute("medicineInstanceList",changShangList1.subList((number-1)*10,this.numberSize));
             }
+
+
         }
         model.addAttribute("pageAllCount",this.pageNumber);
         model.addAttribute("count", this.numberSize);
@@ -185,8 +198,10 @@ public class NjsfyWebController {
 
         if(number==pageNumber){
             model.addAttribute("nextNumber",number);
-        }else{
+        }else if(bolNext){
             model.addAttribute("nextNumber",number+1);
+        }else{
+            model.addAttribute("nextNumber",number);
         }
         return  "njsfy_index/search";
     }

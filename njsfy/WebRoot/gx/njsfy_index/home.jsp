@@ -25,19 +25,23 @@
         function change1() {
             $(" #two2 ").val("")
             $(" #three3 ").val("")
+            $("#fore4").val("")
 
         }
         function change2() {
             $(" #one1 ").val("")
             $(" #three3 ").val("")
-
-
+            $("#fore4").val("")
         }
         function change3() {
             $(" #two2 ").val("")
             $(" #one1 ").val("")
-
-
+            $("#fore4").val("")
+        }
+        function change4() {
+            $(" #two2 ").val("")
+            $(" #one1 ").val("")
+            $(" #three3 ").val("")
         }
         $(function(){
             $(".bodys p").not(":first").hide();
@@ -47,16 +51,30 @@
                     $(this).find("a").addClass("style1");
                     $("li").eq(1).find("a").removeClass("style2");
                     $("li").eq(2).find("a").removeClass("style3");
+                    $("li").eq(3).find("a").removeClass("style4");
+
                 }
                 if(index==1){
                     $(this).find("a").addClass("style2");
                     $("li").eq(0).find("a").removeClass("style1");
                     $("li").eq(2).find("a").removeClass("style3");
+                    $("li").eq(3).find("a").removeClass("style4");
+
                 }
                 if(index==2){
                     $(this).find("a").addClass("style3");
                     $("li").eq(0).find("a").removeClass("style1");
                     $("li").eq(1).find("a").removeClass("style2");
+                    $("li").eq(3).find("a").removeClass("style4");
+
+                }
+                if(index==3){
+                    $(this).find("a").addClass("style4");
+                    $("li").eq(0).find("a").removeClass("style1");
+                    $("li").eq(1).find("a").removeClass("style2");
+                    $("li").eq(2).find("a").removeClass("style3");
+
+
                 }
                 var index=$(this).index();
                 $(".bodys p").eq(index).show().siblings().hide();
@@ -73,6 +91,7 @@
                 <li><a href="#" class="style1">药品类别</a></li>
                 <li><a href="#">用量</a></li>
                 <li><a href="#">适应症</a></li>
+                <li><a href="#">厂商</a></li>
             </ul>
             <div class="bodys">
                 <form action="<%=basePath%>njsfy-index/home.do" method="post">
@@ -86,6 +105,10 @@
                     </p>
                     <p>
                         <input type="text" onchange="change3()" name="searchSyz" value="" id="three3" class="three" placeholder="如：感冒" />
+                        <button type="submit" class="three3 "><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
+                    </p>
+                    <p>
+                        <input type="text" onchange="change4()" name="searchCS" value="" id="fore4" class="three" placeholder="如：江苏天禾迪赛诺制药有限公司" />
                         <button type="submit" class="three3 "><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
                     </p>
 
