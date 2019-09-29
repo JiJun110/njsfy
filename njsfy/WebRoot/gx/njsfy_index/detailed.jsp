@@ -75,8 +75,7 @@
 </script>
 
 
-<div >
-<iframe id="ifrmname1" width="100%" height="218px" frameborder=0 scrolling=no src="<%=request.getContextPath()%>/gx/njsfy_index/top.jsp"></iframe>
+<div id="ifrmname1" >
 </div>
 <div class="content">
 <div class="detail_left">
@@ -92,7 +91,7 @@
     </table>
 
 </div>
-<div class="detail_right"><iframe id="ifrmname2" width="100%" height="1100px"  frameborder=0 scrolling=no src="<%=request.getContextPath()%>/gx/njsfy_index/right.jsp"></iframe></div>
+<div class="detail_right" id="ifrmname2"></div>
 </div>
 <input type="hidden" id="getId" >
     <!-- for doc end -->
@@ -101,12 +100,12 @@
 
     var jsont=null;
     $(function(){
-        if('${medicineInstance.rowId}'!=null && '${medicineInstance.rowId}'.length>0){
-            document.getElementById('ifrmname2').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+'${medicineInstance.rowId}')
-
-            document.getElementById('ifrmname1').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+'${medicineInstance.rowId}')
-
-        }
+       /* if('${medicineInstance.rowId}'!=null && '${medicineInstance.rowId}'.length>0){*/
+            $("#ifrmname2").load("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+'${medicineInstance.rowId}', function() {
+            });
+            $("#ifrmname1").load("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+'${medicineInstance.rowId}', function() {
+            });
+       /* }*/
 
         $.ajax({
             url:'<%=basePath%>njsfy-index/medicineTree-tree.do',
@@ -167,11 +166,11 @@
             cache:false,
             dataType:'json',
             success:function(json){
+                $("#ifrmname2").load("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+json.medicineInstance.rowId, function() {
+                });
+                $("#ifrmname1").load("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+json.medicineInstance.rowId, function() {
+                });
 
-                document.getElementById('ifrmname1').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+json.medicineInstance.rowId)
-
-                /*document.getElementById('ifrmname2').contentWindow.location.replace("<%=request.getContextPath()%>/gx/njsfy_index/right.jsp?warn="+(json.medicineInstance.warn==null?"":json.medicineInstance.warn)+"&syz="+(json.medicineInstance.syz==null?"":json.medicineInstance.syz)+"&yfyl="+(json.medicineInstance.yfyl==null?"":json.medicineInstance.yfyl)+"&tsCcTj="+(json.medicineInstance.tsCcTj==null?"":json.medicineInstance.tsCcTj)+"&cSmSy="+(json.medicineInstance.cSmSy==null?"":json.medicineInstance.cSmSy)+"&attachmentList="+(json.attachmentList));*/
-                document.getElementById('ifrmname2').contentWindow.location.replace("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+json.medicineInstance.rowId)
             }
         });
 

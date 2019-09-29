@@ -19,7 +19,7 @@
             /*location.href="<%=basePath%>njsfy-index/home.do?bolS=bol";*/
         }
         function changShang() {
-            window.open("<%=basePath%>njsfy-index/changShang.do");
+            window.open("<%=basePath%>njsfy-index/home.do?bolC=bol");
             /*location.href="<%=basePath%>njsfy-index/home.do?bolS=bol";*/
         }
         function change1() {

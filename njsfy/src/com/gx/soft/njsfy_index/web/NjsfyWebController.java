@@ -7,9 +7,11 @@ import com.gx.soft.common.util.FileUtil;
 import com.gx.soft.medicineTree.persistence.domain.Attachment;
 import com.gx.soft.medicineTree.persistence.domain.MedicineInstance;
 import com.gx.soft.medicineTree.persistence.domain.MedicineType;
+import com.gx.soft.medicineTree.persistence.domain.VChangshang;
 import com.gx.soft.medicineTree.persistence.manager.AttachMentManager;
 import com.gx.soft.medicineTree.persistence.manager.MedicineInstanceManager;
 import com.gx.soft.medicineTree.persistence.manager.MedicineTypeManager;
+import com.gx.soft.medicineTree.persistence.manager.VChangshangManager;
 import com.gx.soft.sys.vo.ZtreeData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,21 +37,26 @@ public class NjsfyWebController {
 
 
     private List<MedicineInstance>medicineInstanceList1=new ArrayList<>();
+    private List<VChangshang>changShangList1=new ArrayList<>();
     @Autowired
     private MedicineTypeManager medicineTypeManager;
     @Autowired
     private AttachMentManager attachMentManager;
+    @Autowired
+    private VChangshangManager vChangshangManager;
     private String name=null;
     private int pageNumber=0;
     private int numberSize=0;
     @Autowired
     private MedicineInstanceManager medicineInstanceManager;
     @RequestMapping("home")
-    public String home(@RequestParam Map<String, Object> parameterMap,String searchMedicine, String searchYl, String searchSyz,String bolS, Model model){
+    public String home(@RequestParam Map<String, Object> parameterMap,String searchMedicine, String searchYl, String searchSyz,String bolS,String changShangName, String bolC,Model model){
         medicineInstanceList1=new ArrayList<>();
+        changShangList1=new ArrayList<>();
         this.name=null;
         this.pageNumber=0;
         this.numberSize=0;
+        List<VChangshang>changShangList=new ArrayList<>();
         List<MedicineInstance>medicineInstanceList=new ArrayList<>();
         if(searchMedicine!=null && searchMedicine.length()>0){
             String hql="from MedicineInstance where medicineName like ?";
@@ -69,33 +76,67 @@ public class NjsfyWebController {
             model.addAttribute("serachName",searchSyz);
             this.name=searchSyz;
             medicineInstanceList=medicineInstanceManager.find(hql,"%"+searchSyz+"%");
-        }
-        if(bolS!=null && bolS.equals("bol")){
+        }else if(changShangName !=null && changShangName.length()>0){
+            medicineInstanceList=  medicineInstanceManager.find("from MedicineInstance where changShang=?",changShangName);
+            model.addAttribute("serachName",changShangName);
+            this.name=searchSyz;
+        }else if(bolS!=null && bolS.equals("bol")){
             medicineInstanceList=medicineInstanceManager.getAll();
+        }else if(bolC!=null && bolC.equals("bol")){
+            changShangList=vChangshangManager.getAll();
+            model.addAttribute("bolC","bol");
         }
-        if(medicineInstanceList.size()>0){
-            if(medicineInstanceList.size()>10) {
-                medicineInstanceList1=medicineInstanceList;
-                model.addAttribute("medicineInstanceList", medicineInstanceList.subList(0, 10));
-            }else{
-                model.addAttribute("medicineInstanceList", medicineInstanceList);
-                medicineInstanceList1=medicineInstanceList;
-            }
-            model.addAttribute("count",medicineInstanceList.size());
-            this.numberSize=medicineInstanceList.size();
-            int pageAllCount=0;
-            if(medicineInstanceList.size()%10==0){
-                pageAllCount=medicineInstanceList.size()/10;
-                this.pageNumber=pageAllCount;
-            }else{
-                pageAllCount=medicineInstanceList.size()/10+1;
-                this.pageNumber=pageAllCount;
-            }
-            model.addAttribute("pageAllCount",pageAllCount);
-        }else{
-            model.addAttribute("count",0);
-            this.numberSize=0;
 
+        if(changShangList.size()>0){
+            if(changShangList.size()>0){
+                if(changShangList.size()>10) {
+                    changShangList1=changShangList;
+                    model.addAttribute("medicineInstanceList", changShangList.subList(0, 10));
+                }else{
+                    model.addAttribute("medicineInstanceList", changShangList);
+                    changShangList1=changShangList;
+                }
+                model.addAttribute("count",changShangList.size());
+                this.numberSize=changShangList.size();
+                int pageAllCount=0;
+                if(changShangList.size()%10==0){
+                    pageAllCount=changShangList.size()/10;
+                    this.pageNumber=pageAllCount;
+                }else{
+                    pageAllCount=changShangList.size()/10+1;
+                    this.pageNumber=pageAllCount;
+                }
+                model.addAttribute("pageAllCount",pageAllCount);
+            }else{
+                model.addAttribute("count",0);
+                this.numberSize=0;
+
+            }
+        }else{
+            if(medicineInstanceList.size()>0){
+                if(medicineInstanceList.size()>10) {
+                    medicineInstanceList1=medicineInstanceList;
+                    model.addAttribute("medicineInstanceList", medicineInstanceList.subList(0, 10));
+                }else{
+                    model.addAttribute("medicineInstanceList", medicineInstanceList);
+                    medicineInstanceList1=medicineInstanceList;
+                }
+                model.addAttribute("count",medicineInstanceList.size());
+                this.numberSize=medicineInstanceList.size();
+                int pageAllCount=0;
+                if(medicineInstanceList.size()%10==0){
+                    pageAllCount=medicineInstanceList.size()/10;
+                    this.pageNumber=pageAllCount;
+                }else{
+                    pageAllCount=medicineInstanceList.size()/10+1;
+                    this.pageNumber=pageAllCount;
+                }
+                model.addAttribute("pageAllCount",pageAllCount);
+            }else{
+                model.addAttribute("count",0);
+                this.numberSize=0;
+
+            }
         }
         model.addAttribute("curNumber",1);
         model.addAttribute("nextNumber",2);
@@ -105,15 +146,31 @@ public class NjsfyWebController {
     @RequestMapping(value = "chage-number", produces = "application/json")
 
     public String chageCurentNumber(int number,Model model){
-        if(number!=pageNumber && medicineInstanceList1.size()>0){
-            model.addAttribute("medicineInstanceList",medicineInstanceList1.subList((number-1)*10,number*10));
-        }else{
-            model.addAttribute("medicineInstanceList",medicineInstanceList1.subList((number-1)*10,this.numberSize));
+        if(medicineInstanceList1.size()>0){
+            if(number!=pageNumber && medicineInstanceList1.size()<10){
+                model.addAttribute("medicineInstanceList",medicineInstanceList1);
 
+            }else if(number!=pageNumber && medicineInstanceList1.size()>0){
+                model.addAttribute("medicineInstanceList",medicineInstanceList1.subList((number-1)*10,number*10));
+            }else{
+                model.addAttribute("medicineInstanceList",medicineInstanceList1.subList((number-1)*10,this.numberSize));
+
+            }
+
+        }else if(changShangList1.size()>0){
+            model.addAttribute("bolC","bol");
+            if(number!=pageNumber && changShangList1.size()>0){
+                model.addAttribute("medicineInstanceList",changShangList1.subList((number-1)*10,number*10));
+            }else{
+                model.addAttribute("medicineInstanceList",changShangList1.subList((number-1)*10,this.numberSize));
+
+            }
         }
         model.addAttribute("pageAllCount",this.pageNumber);
         model.addAttribute("count", this.numberSize);
-        model.addAttribute("serachName",this.name);
+        if(medicineInstanceList1.size()>0) {
+            model.addAttribute("serachName", this.name);
+        }
         if(number!=1){
             model.addAttribute("curNumber",number-1);
         }else{
@@ -164,6 +221,14 @@ public class NjsfyWebController {
         model.addAttribute("medicineInstance",medicineInstance);
         model.addAttribute("attachmentList",attachmentList);
         return  "njsfy_index/detailed";
+
+    }
+    @RequestMapping("medicine-changshang-instance")
+    public String getChangshangMedicine(String changShangName,Model model){
+        List<MedicineInstance>medicineInstanceList=new ArrayList<>();
+        medicineInstanceList=  medicineInstanceManager.find("from MedicineInstance where changShang=?",changShangName);
+        model.addAttribute("medicineInstanceList",medicineInstanceList);
+        return  "njsfy_index/search";
 
     }
     @RequestMapping("medicine-instance2")
@@ -271,7 +336,7 @@ public class NjsfyWebController {
 
     @RequestMapping("changShang")
     public String changShang(Model model){
-        List<String>changShangList=medicineInstanceManager.find("SELECT DISTINCT changShang  from  MedicineInstance");
+        List<VChangshang>changShangList=vChangshangManager.getAll();
         model.addAttribute("changShangList",changShangList);
         return "njsfy_index/changShang";
     }

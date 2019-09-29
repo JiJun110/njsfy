@@ -19,6 +19,11 @@
         window.open("<%=basePath%>njsfy-index/medicine-instance.do?rowId="+rowId);
       /*  location.href="<%=basePath%>njsfy-index/medicine-instance.do?rowId="+rowId;*/
     }
+    function getChangShangMedicine(changShangName) {
+        /*window.open("<%=basePath%>njsfy-index/medicine-changshang-instance.do?changShangName="+changShangName);*/
+        window.open("<%=basePath%>njsfy-index/home.do?changShangName="+changShangName);
+
+    }
     function change1() {
         $(" #two2 ").val("")
         $(" #three3 ").val("")
@@ -100,16 +105,29 @@
             <!--列表内容-->
             <div class="resulttable" style="clear:both">
                 <ul class="list">
-                    <c:forEach items="${medicineInstanceList}" var="bean" varStatus="status">
-                        <li onclick="getMedicineInstance('${bean.rowId}')">
-                            <div >
-                                <h3 class="resultlink" ><a  >${bean.changShang} </a> </h3>
-                                <p> <b>商品名：</b>${bean.medicineName}&nbsp;&nbsp;&nbsp;&nbsp; <b>成份：</b> <br/>
-                                    <b>适应症：</b>${bean.syz}</p>
-                            </div>
-                            <div class="fr"> </div>
-                        </li>
-                    </c:forEach>
+                    <c:if test="${bolC=='bol'}">
+                        <c:forEach items="${medicineInstanceList}" var="bean" varStatus="status">
+                            <li onclick="getChangShangMedicine('${bean.changShang}')">
+                                <div >
+                                    <h3 class="resultlink" ><a  >${bean.changShang} </a> </h3>
+                                </div>
+                                <div class="fr"> </div>
+                            </li>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${bolC!='bol'}">
+                        <c:forEach items="${medicineInstanceList}" var="bean" varStatus="status">
+                            <li onclick="getMedicineInstance('${bean.rowId}')">
+                                <div >
+                                    <h3 class="resultlink" ><a  >${bean.changShang} </a> </h3>
+                                    <p> <b>商品名：</b>${bean.medicineName}&nbsp;&nbsp;&nbsp;&nbsp; <b>成份：</b> <br/>
+                                        <b>适应症：</b>${bean.syz}</p>
+                                </div>
+                                <div class="fr"> </div>
+                            </li>
+                        </c:forEach>
+                    </c:if>
+
                 </ul>
                 <br/>
             </div>
