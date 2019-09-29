@@ -137,20 +137,18 @@
             </div>
             <div class="pager">
                 <a href="<%=basePath%>njsfy-index/chage-number.do?number=1"> &lt;&lt; </a>
-                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${curNumber}"> &lt; </a>
-
+                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${curNumber}&bolL=bolL"> &lt; </a>
+               <%-- <h1>${curNumber}</h1>--%>
                 <c:forEach var="i" begin="1" end="${pageAllCount}">
-                    <c:if test="${(curNumber+1) ==i}">
-                        <a href="<%=basePath%>njsfy-index/chage-number.do?number=${i}" class="selected"> ${i} </a>
+                    <c:if test="${(curNumber) ==i}">
+                        <a href="<%=basePath%>njsfy-index/chage-number.do?number=${i}&bolNum=bol" class="selected"> ${i} </a>
                     </c:if>
-                    <c:if test="${(curNumber+1) !=i}">
-                        <a href="<%=basePath%>njsfy-index/chage-number.do?number=${i}"> ${i} </a>
+                    <c:if test="${(curNumber) !=i}">
+                        <a href="<%=basePath%>njsfy-index/chage-number.do?number=${i}&bolNum=bol"> ${i} </a>
                     </c:if>
-
-
                 </c:forEach>
-                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${nextNumber}" > &gt;</a>
-                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${pageAllCount}"> &gt;&gt; </a>
+                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${nextNumber}&bolR=bolR" > &gt;</a>
+                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${pageAllCount}&bolRR=bolRR"> &gt;&gt; </a>
             </div>
             <!--列表内容-->
         </c:if>

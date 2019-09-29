@@ -145,7 +145,7 @@ public class NjsfyWebController {
     }
     @RequestMapping(value = "chage-number", produces = "application/json")
 
-    public String chageCurentNumber(int number,Model model){
+    public String chageCurentNumber(int number,String bolNum,String bolL,String bolR,String bolRR,Model model){
         if(medicineInstanceList1.size()>0){
             if(number!=pageNumber && medicineInstanceList1.size()<10){
                 model.addAttribute("medicineInstanceList",medicineInstanceList1);
@@ -163,7 +163,6 @@ public class NjsfyWebController {
                 model.addAttribute("medicineInstanceList",changShangList1.subList((number-1)*10,number*10));
             }else{
                 model.addAttribute("medicineInstanceList",changShangList1.subList((number-1)*10,this.numberSize));
-
             }
         }
         model.addAttribute("pageAllCount",this.pageNumber);
@@ -171,11 +170,19 @@ public class NjsfyWebController {
         if(medicineInstanceList1.size()>0) {
             model.addAttribute("serachName", this.name);
         }
-        if(number!=1){
-            model.addAttribute("curNumber",number-1);
-        }else{
+        if(bolNum!=null && bolNum.equals("bol")){
             model.addAttribute("curNumber",number);
+        }else if(bolL!=null&&bolL.equals("bolL")&&number!=1){
+            model.addAttribute("curNumber",number-1);
+        }else if(bolRR!=null&&bolRR.equals("bolRR") && number==pageNumber){
+            model.addAttribute("curNumber",number);
+
+        } else if(bolR!=null&&bolR.equals("bolR")){
+            model.addAttribute("curNumber",number);
+        }else {
+            model.addAttribute("curNumber",1);
         }
+
         if(number==pageNumber){
             model.addAttribute("nextNumber",number);
         }else{
