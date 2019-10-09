@@ -81,7 +81,7 @@
 <div class="content">
 <div class="detail_left">
 
-    <table cellpadding="0" cellspacing="0" width="100%" style="min-height: 600px">
+    <table cellpadding="0" cellspacing="0" width="100%" style="min-height: 600px;margin-left: -100px;">
         <tr>
             <td style="background:#FFF;box-shadow:0  2px 10px rgba(0,0,0,0.15); "><div class="content_wrap">
                 <div class="zTreeDemoBackground left">
