@@ -15,8 +15,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/images/zTreeStyle.css" type="text/css">
 <script src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.ztree.core.js"></script>
 
-
-
 <style>
   /*  ul.ztree {
         margin-left: 0px;
@@ -62,7 +60,6 @@
         if(rowIdList.length>0){
             location.href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList="+rowIdList;
         }
-
     }
     function lookAttach(rowId) {
         location.href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList="+rowId;
@@ -129,10 +126,7 @@
 --%>
                     </td>
                 </tr>
-
             </c:forEach>
-
-
         </table>
     </div>
 </div>

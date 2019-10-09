@@ -24,27 +24,24 @@
         window.open("<%=basePath%>njsfy-index/home.do?changShangName="+changShangName);
 
     }
+    function getYqAqdjMedicine(yqAqdj) {
+        window.open("<%=basePath%>njsfy-index/home.do?yqAqdj="+yqAqdj);
+
+    }
     function change1() {
         $(" #two2 ").val("")
         $(" #three3 ").val("")
-        $("#fore4").val("")
 
     }
     function change2() {
         $(" #one1 ").val("")
         $(" #three3 ").val("")
-        $("#fore4").val("")
     }
     function change3() {
         $(" #two2 ").val("")
         $(" #one1 ").val("")
-        $("#fore4").val("")
     }
-    function change4() {
-        $(" #two2 ").val("")
-        $(" #one1 ").val("")
-        $(" #three3 ").val("")
-    }
+
     $(function(){
         $(".bodys p").not(":first").hide();
         $(".searchbox ul li").mouseover(function(){
@@ -70,14 +67,7 @@
                 $("li").eq(3).find("a").removeClass("style4");
 
             }
-            if(index==3){
-                $(this).find("a").addClass("style4");
-                $("li").eq(0).find("a").removeClass("style1");
-                $("li").eq(1).find("a").removeClass("style2");
-                $("li").eq(2).find("a").removeClass("style3");
 
-
-            }
             var index=$(this).index();
             $(".bodys p").eq(index).show().siblings().hide();
         });
@@ -89,10 +79,9 @@
     <!--查询-->
     <div class="searchbox" style="padding-top:50px">
         <ul class="border1">
-            <li><a href="#" class="style1">药品类别</a></li>
+            <li><a href="#" class="style1">药品名称</a></li>
             <li><a href="#">用量</a></li>
             <li><a href="#">适应症</a></li>
-            <li><a href="#">厂商</a></li>
         </ul>
         <div class="bodys">
             <form action="<%=basePath%>njsfy-index/home.do" method="post">
@@ -108,10 +97,7 @@
                     <input type="text" onchange="change3()" name="searchSyz" value="" id="three3" class="three" placeholder="如：感冒" />
                     <button type="submit" class="three3 "><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
                 </p>
-                <p>
-                    <input type="text" onchange="change4()" name="searchCS" value="" id="fore4" class="three" placeholder="如：江苏天禾迪赛诺制药有限公司" />
-                    <button type="submit" class="three3 "><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_search.png" align="absmiddle" width="38" height="38" />  查询</button>
-                </p>
+
 
             </form>
         </div>
@@ -142,7 +128,18 @@
                             </li>
                         </c:forEach>
                     </c:if>
-                    <c:if test="${bolC!='bol'}">
+                    <c:if test="${bolAnQuan=='bol'}">
+                        <c:forEach items="${medicineInstanceList}" var="bean" varStatus="status">
+                            <li onclick="getYqAqdjMedicine('${bean.yqAqdj}')">
+                                <div >
+                                    <h3 class="resultlink" ><a  >孕期安全等级</a> </h3>
+                                    <p> <b>孕期安全等级：</b>${bean.yqAqdj}</p>
+                                </div>
+                                <div class="fr"> </div>
+                            </li>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${bolC!='bol' && bolAnQuan!='bol'}">
                         <c:forEach items="${medicineInstanceList}" var="bean" varStatus="status">
                             <li onclick="getMedicineInstance('${bean.rowId}')">
                                 <div >
@@ -162,22 +159,26 @@
             <div class="i20">
 
             </div>
-            <div class="pager">
-                <a href="<%=basePath%>njsfy-index/chage-number.do?number=1"> &lt;&lt; </a>
-                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${curNumber}&bolL=bolL"> &lt; </a>
-               <%-- <h1>${curNumber}</h1>--%>
-                <c:forEach var="i" begin="1" end="${pageAllCount}">
-                    <c:if test="${(curNumber) ==i}">
-                        <a href="<%=basePath%>njsfy-index/chage-number.do?number=${i}&bolNum=bol" class="selected"> ${i} </a>
-                    </c:if>
-                    <c:if test="${(curNumber) !=i}">
-                        <a href="<%=basePath%>njsfy-index/chage-number.do?number=${i}&bolNum=bol"> ${i} </a>
-                    </c:if>
-                </c:forEach>
-                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${nextNumber}&bolR=bolR" > &gt;</a>
-                <a href="<%=basePath%>njsfy-index/chage-number.do?number=${pageAllCount}&bolRR=bolRR"> &gt;&gt; </a>
-            </div>
-            <!--列表内容-->
+            <c:if test="${bolC!='bol' && bolAnQuan!='bol'}">
+                <!--列表内容-->
+                <div class="pager">
+                    <a href="<%=basePath%>njsfy-index/chage-number.do?number=1"> &lt;&lt; </a>
+                    <a href="<%=basePath%>njsfy-index/chage-number.do?number=${curNumber}&bolL=bolL"> &lt; </a>
+                        <%-- <h1>${curNumber}</h1>--%>
+                    <c:forEach var="i" begin="1" end="${pageAllCount}">
+                        <c:if test="${(curNumber) ==i}">
+                            <a href="<%=basePath%>njsfy-index/chage-number.do?number=${i}&bolNum=bol" class="selected"> ${i} </a>
+                        </c:if>
+                        <c:if test="${(curNumber) !=i}">
+                            <a href="<%=basePath%>njsfy-index/chage-number.do?number=${i}&bolNum=bol"> ${i} </a>
+                        </c:if>
+                    </c:forEach>
+                    <a href="<%=basePath%>njsfy-index/chage-number.do?number=${nextNumber}&bolR=bolR" > &gt;</a>
+                    <a href="<%=basePath%>njsfy-index/chage-number.do?number=${pageAllCount}&bolRR=bolRR"> &gt;&gt; </a>
+                </div>
+
+            </c:if>
+
         </c:if>
         <c:if test="${bol ==0}">
 
