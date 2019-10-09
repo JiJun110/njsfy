@@ -438,6 +438,9 @@ public class MedinineInstanceController {
         model.addAttribute("medicineInstance", medicineInstance);
         model.addAttribute("fileRecordList", fileRecordList);
         bol_c=bol;
+        if(bol==null){
+            bol="A";
+        }
         model.addAttribute("bol", bol);
         return "medicineTree/medicineInstance/medicineInstance-edit";
     }
@@ -604,6 +607,14 @@ public class MedinineInstanceController {
                     }else{
                         bol=false;
                     }
+                    if (row.getCell(16) != null) {
+                        row.getCell(16).setCellType(Cell.CELL_TYPE_STRING);
+                        if(!row.getCell(16).getStringCellValue().trim().equals("是否皮试")){
+                            bol=false;
+                        }
+                    }else{
+                        bol=false;
+                    }
                     if(!bol){
                         statusCode = "300";
                         message = "操作失败,请使用我们提供的模板操作";
@@ -725,6 +736,11 @@ public class MedinineInstanceController {
                         row.getCell(15).setCellType(Cell.CELL_TYPE_STRING);
                         chaoShuoMingShiYong = row.getCell(15).getStringCellValue();
                     }
+                    String sfPs = null;
+                    if (row.getCell(16) != null) {
+                        row.getCell(16).setCellType(Cell.CELL_TYPE_STRING);
+                        sfPs = row.getCell(16).getStringCellValue();
+                    }
                     if(cBol>=4){
                         resMap.put("statusCode", statusCode);
                         resMap.put("message", message);
@@ -799,6 +815,9 @@ public class MedinineInstanceController {
                         }
                         if (chaoShuoMingShiYong != null && chaoShuoMingShiYong.length() > 0) {
                             medicineInstance.setcSmSy(chaoShuoMingShiYong);
+                        }
+                        if (sfPs != null && sfPs.length() > 0) {
+                            medicineInstance.setIsPs(sfPs);
                         }
                         medicineInstance.setCreateTime(ts);
                         medicineInstance.setRowId(null);

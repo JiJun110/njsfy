@@ -146,7 +146,7 @@
                 <tbody>
                 <tr>
                     <td style=" border: 0;">
-                        <label class="control-label x90" style="width: 105px;">章节：</label>
+                        <label class="control-label x90" style="width: 105px;">类别：</label>
                     </td>
                     <td style=" border: 0;">
                         <input type="hidden" name="medicineType"  value="${medicineInstance.medicineType}" >
@@ -269,6 +269,17 @@
                     <td style=" border: 0;">
                         <input type="radio" name="isJy"  value="是"  ${medicineInstance.isJy eq '是' ? 'checked="checked"':'' }  data-toggle="icheck" data-label="是">
                         <input type="radio" name="isJy"  value="否"  ${medicineInstance.isJy eq '否' ? 'checked="checked"':'' }  data-toggle="icheck" data-label="否">
+                        <%--  <select name="isJy" data-toggle="selectpicker">
+                              <option value="是" ${medicineInstance.isJy eq '是' ? 'selected="selected"':'' }>是</option>
+                              <option value="否" ${medicineInstance.isJy eq '否' ? 'selected="selected"':'' }>否</option>
+                          </select>--%>
+                    </td>
+                    <td style=" border: 0;">
+                        <label class="control-label x90" style="width: 105px;">是否皮试：</label>
+                    </td>
+                    <td style=" border: 0;">
+                        <input type="radio" name="isPs"  value="是"  ${medicineInstance.isPs eq '是' ? 'checked="checked"':'' }  data-toggle="icheck" data-label="是">
+                        <input type="radio" name="isPs"  value="否"  ${medicineInstance.isPs eq '否' ? 'checked="checked"':'' }  data-toggle="icheck" data-label="否">
                         <%--  <select name="isJy" data-toggle="selectpicker">
                               <option value="是" ${medicineInstance.isJy eq '是' ? 'selected="selected"':'' }>是</option>
                               <option value="否" ${medicineInstance.isJy eq '否' ? 'selected="selected"':'' }>否</option>
