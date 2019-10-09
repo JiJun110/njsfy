@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/images/demo.css" type="text/css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/images/zTreeStyle.css" type="text/css">
 <script src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.ztree.core.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
-<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.min.js"></script>
+<%--<link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
+<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.min.js"></script>--%>
 <style>
   /*  ul.ztree {
         margin-left: 0px;
@@ -26,10 +26,10 @@
     }*/
 </style>
 <script>
-    //图片放大预览
+  /*  //图片放大预览
     jQuery(document).ready(function($){
         $('.lightbox').lightbox();
-    });
+    });*/
 </script>
 <script>
     var rowIdList=new Array();

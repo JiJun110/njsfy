@@ -88,7 +88,7 @@
         <!--查询-->
         <div class="searchbox">
             <ul class="border1">
-                <li><a href="#" class="style1">药品类别</a></li>
+                <li><a href="#" class="style1">药品名称</a></li>
                 <li><a href="#">用量</a></li>
                 <li><a href="#">适应症</a></li>
                 <li><a href="#">厂商</a></li>
@@ -157,9 +157,9 @@
         <div class="contentdiv" onclick="shiyingzheng()">
             <div class="content_pic"><img src="images/img_menu4.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">医药范围
+                <p class="title">基本药物
                 </p>
-                <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
+                <p class="titleC">基本药物类别索引
                 </p>
             </div>
         </div>
@@ -168,7 +168,7 @@
         <div class="contentdiv" onclick="changShang()">
             <div class="content_pic"><img src="images/img_menu5.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">厂商索引
+                <p class="title">孕期安全等级
                 </p>
                 <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
                 </p>
@@ -181,12 +181,12 @@
             <div class="content_words">
                 <p class="title">其他
                 </p>
-                <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
+                <p class="titleC">高危药品、仅限高危药品列表
                 </p>
             </div>
         </div>
     </div>
-    <div style="clear:both; display:block; width:100%; text-align:center; padding-top:20px;"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_bottom.jpg" width="278" height="79" /></div>
+<%--    <div style="clear:both; display:block; width:100%; text-align:center; padding-top:20px;"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_bottom.jpg" width="278" height="79" /></div>--%>
 </div>
 </body>
 </html>

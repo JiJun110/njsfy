@@ -22,10 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -296,7 +293,8 @@ public class NjsfyWebController {
      * @param response 返回
      */
     @RequestMapping(value = "fileDownload-attach")
-    public String  batchDownloadFiles(String []rowIdList, HttpServletRequest request, HttpServletResponse response) {
+    @ResponseBody
+    public String  batchDownloadFiles(String []rowIdList, HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println(new Date().getTime());
 
         //读取前端传来json字段
@@ -317,8 +315,10 @@ public class NjsfyWebController {
             }
         }
         if(filaPathList.size()==1){
+            //response.getOutputStream().close();
             FileUtil fileHelper = new FileUtil();
             fileHelper.downloadFile(filaPathList.get(0), request, response, fileNameList.get(0));
+            //response.getOutputStream().close();
         }else{
             String zipPath = new ZipUtils().createZipAndReturnPath(JSONObject.toJSONString(filaPathList), JSONObject.toJSONString(fileNameList),fileSaveRootPath);
             try {
@@ -339,10 +339,19 @@ public class NjsfyWebController {
                 }
                 out.close();
                 out.flush();
+                //response.getOutputStream().close();
                 is.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+            }catch (IllegalStateException ee){
+                System.out.println("++++++++++++++++++++++++++++");
+                System.out.println(ee);
+                System.out.println("++++++++++++++++++++++++++++");
+                //response.getOutputStream().close();
             }
+            catch (Exception e) {
+                e.printStackTrace();
+                //response.getOutputStream().close();
+            }
+
         }
 
         Map<String, Object> resMap = new HashMap<String, Object>();

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by adminstrator on 2019/9/17.
+ * Created by adminstrator on 2019/9/30.
  */
 @Entity
 @Table(name = "medicine_instance", schema = "njsfy", catalog = "")
@@ -40,6 +40,7 @@ public class MedicineInstance {
     private String ext3;
     private String ext4;
     private String medicineTypeName;
+    private String isPs;
 
     @GenericGenerator(name = "generator", strategy = "uuid.hex")
     @Id
@@ -333,6 +334,16 @@ public class MedicineInstance {
         this.medicineTypeName = medicineTypeName;
     }
 
+    @Basic
+    @Column(name = "is_ps")
+    public String getIsPs() {
+        return isPs;
+    }
+
+    public void setIsPs(String isPs) {
+        this.isPs = isPs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -371,6 +382,7 @@ public class MedicineInstance {
         if (ext4 != null ? !ext4.equals(that.ext4) : that.ext4 != null) return false;
         if (medicineTypeName != null ? !medicineTypeName.equals(that.medicineTypeName) : that.medicineTypeName != null)
             return false;
+        if (isPs != null ? !isPs.equals(that.isPs) : that.isPs != null) return false;
 
         return true;
     }
@@ -406,6 +418,7 @@ public class MedicineInstance {
         result = 31 * result + (ext3 != null ? ext3.hashCode() : 0);
         result = 31 * result + (ext4 != null ? ext4.hashCode() : 0);
         result = 31 * result + (medicineTypeName != null ? medicineTypeName.hashCode() : 0);
+        result = 31 * result + (isPs != null ? isPs.hashCode() : 0);
         return result;
     }
 }

@@ -6,7 +6,7 @@
 %>
 <script src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery-1.7.2.min.js"></script>
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/lightbox-plus-jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/lightbox.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
 
 
@@ -118,9 +118,15 @@
                     <td align="center">${bean.fileName}</td>
                     <td align="center">${bean.uploadTime}</td>
                     <td align="center">
-                        <a  href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" data-lightbox="image-1" width="200" height="200" data-title="My caption">
-                            <img  src="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" width="40" height="40" />
-                        </a>
+                            <%--   <c:if test="${(status.index)==0}">--%>
+                            <a  href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" data-lightbox="image-1" width="200" height="200" data-title="My caption">
+                                <img  class="tImg" src="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" width="40" height="40" />
+                            </a>
+                      <%--  </c:if>--%>
+                      <%--  <c:if test="${(status.index)!=0}">
+                            123123
+                        </c:if>
+--%>
                     </td>
                 </tr>
 
@@ -132,11 +138,12 @@
 </div>
 
 <script >
-    jQuery(document).ready(function($){
+  /*  jQuery(document).ready(function($){
         $("img").click(function(){
-            lightbox();
+           /!* alert("123");
+            $('.tImg').lightbox();*!/
         });
-    });
+    });*/
 </script>
 
 

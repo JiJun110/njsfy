@@ -14,7 +14,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/images/zTreeStyle.css" type="text/css">
 <script src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.ztree.core.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
-<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/lightbox.js"></script>
+
+<%--<script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/lightbox-plus-jquery.js"></script>--%>
+
 <style>
     ul.ztree {
         margin-left: 0px;
@@ -26,12 +29,12 @@
 
     }
 </style>
-<script>
+<%--<script>
     //图片放大预览
     jQuery(document).ready(function($){
         $('.lightbox').lightbox();
     });
-</script>
+</script>--%>
 <script>
     var rowIdList=new Array();
     function allClick() {
@@ -93,6 +96,7 @@
 </div>
 <input type="hidden" id="getId" >
     <!-- for doc end -->
+
 <script>
 
 
@@ -165,9 +169,14 @@
             dataType:'json',
             success:function(json){
                 $("#ifrmname2").load("<%=basePath%>njsfy-index/medicine-instance2.do?rowId="+json.medicineInstance.rowId, function() {
+                    <%
+                        /*out.clear();
+                        out=pageContext.pushBody();*/
+                    %>
                 });
                 $("#ifrmname1").load("<%=basePath%>njsfy-index/medicine-instance3.do?rowId="+json.medicineInstance.rowId, function() {
                 });
+
 
             }
         });

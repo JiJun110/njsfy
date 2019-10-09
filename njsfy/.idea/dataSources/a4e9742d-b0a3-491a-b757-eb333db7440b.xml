@@ -922,325 +922,330 @@ user_id</ColNames>
       <DataType>int(11)|0</DataType>
     </column>
     <column id="208" parent="28" name="aqdj">
-      <Position>21</Position>
+      <Position>22</Position>
       <Comment>安全等级</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
     <column id="209" parent="28" name="create_time">
-      <Position>22</Position>
-      <DataType>timestamp|0</DataType>
-    </column>
-    <column id="210" parent="28" name="upload_time">
       <Position>23</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="211" parent="28" name="create_user">
+    <column id="210" parent="28" name="upload_time">
       <Position>24</Position>
-      <DataType>varchar(255)|0</DataType>
+      <DataType>timestamp|0</DataType>
     </column>
-    <column id="212" parent="28" name="upload_user">
+    <column id="211" parent="28" name="create_user">
       <Position>25</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="213" parent="28" name="ext2">
-      <Position>27</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="214" parent="28" name="ext3">
-      <Position>28</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="215" parent="28" name="ext4">
-      <Position>29</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="216" parent="28" name="medicine_type_name">
+    <column id="212" parent="28" name="upload_user">
       <Position>26</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="217" parent="28" name="PRIMARY">
+    <column id="213" parent="28" name="ext2">
+      <Position>28</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="214" parent="28" name="ext3">
+      <Position>29</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="215" parent="28" name="ext4">
+      <Position>30</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="216" parent="28" name="medicine_type_name">
+      <Position>27</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="217" parent="28" name="is_ps">
+      <Position>21</Position>
+      <Comment>是否皮试</Comment>
+      <DataType>varchar(40)|0</DataType>
+    </column>
+    <key id="218" parent="28" name="PRIMARY">
       <ColNames>row_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="218" parent="29" name="row_id">
+    <column id="219" parent="29" name="row_id">
       <Position>1</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="219" parent="29" name="medicine_type_id">
+    <column id="220" parent="29" name="medicine_type_id">
       <Position>2</Position>
       <Comment>药品类别id</Comment>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="220" parent="29" name="medicine_type_name">
+    <column id="221" parent="29" name="medicine_type_name">
       <Position>3</Position>
       <Comment>药品类别名称</Comment>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="221" parent="29" name="medicine_parent_type_id">
+    <column id="222" parent="29" name="medicine_parent_type_id">
       <Position>4</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="222" parent="29" name="medicine_parent_type_name">
+    <column id="223" parent="29" name="medicine_parent_type_name">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="223" parent="29" name="create_time">
+    <column id="224" parent="29" name="create_time">
       <Position>6</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="224" parent="29" name="upload_time">
+    <column id="225" parent="29" name="upload_time">
       <Position>7</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="225" parent="29" name="create_name">
+    <column id="226" parent="29" name="create_name">
       <Position>8</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="226" parent="29" name="upload_name">
+    <column id="227" parent="29" name="upload_name">
       <Position>9</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="227" parent="29" name="ext1">
+    <column id="228" parent="29" name="ext1">
       <Position>10</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="228" parent="29" name="ext2">
+    <column id="229" parent="29" name="ext2">
       <Position>11</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="229" parent="29" name="ext3">
+    <column id="230" parent="29" name="ext3">
       <Position>12</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="230" parent="29" name="ext4">
+    <column id="231" parent="29" name="ext4">
       <Position>13</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="231" parent="29" name="PRIMARY">
+    <key id="232" parent="29" name="PRIMARY">
       <ColNames>row_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="232" parent="30" name="row_id">
+    <column id="233" parent="30" name="row_id">
       <Position>1</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="233" parent="30" name="url">
+    <column id="234" parent="30" name="url">
       <Position>2</Position>
       <DataType>varchar(250)|0</DataType>
     </column>
-    <column id="234" parent="30" name="user_name">
+    <column id="235" parent="30" name="user_name">
       <Position>3</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="235" parent="30" name="user_pwd">
+    <column id="236" parent="30" name="user_pwd">
       <Position>4</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="236" parent="30" name="create_user">
+    <column id="237" parent="30" name="create_user">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="237" parent="30" name="create_time">
+    <column id="238" parent="30" name="create_time">
       <Position>6</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="238" parent="30" name="upload_time">
+    <column id="239" parent="30" name="upload_time">
       <Position>7</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="239" parent="30" name="ext1">
+    <column id="240" parent="30" name="ext1">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="240" parent="30" name="ext2">
+    <column id="241" parent="30" name="ext2">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="241" parent="30" name="ext3">
+    <column id="242" parent="30" name="ext3">
       <Position>10</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="242" parent="30" name="ext4">
+    <column id="243" parent="30" name="ext4">
       <Position>11</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="243" parent="30" name="PRIMARY">
+    <key id="244" parent="30" name="PRIMARY">
       <ColNames>row_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="244" parent="31" name="row_id">
+    <column id="245" parent="31" name="row_id">
       <Position>1</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="245" parent="31" name="yaobao_type_name">
+    <column id="246" parent="31" name="yaobao_type_name">
       <Position>2</Position>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="246" parent="31" name="create_time">
+    <column id="247" parent="31" name="create_time">
       <Position>3</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="247" parent="31" name="upload_time">
+    <column id="248" parent="31" name="upload_time">
       <Position>4</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <column id="248" parent="31" name="create_user">
+    <column id="249" parent="31" name="create_user">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="249" parent="31" name="upload_user">
+    <column id="250" parent="31" name="upload_user">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="250" parent="31" name="ext1">
+    <column id="251" parent="31" name="ext1">
       <Position>7</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="251" parent="31" name="ext2">
+    <column id="252" parent="31" name="ext2">
       <Position>8</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="252" parent="31" name="ext3">
+    <column id="253" parent="31" name="ext3">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="253" parent="31" name="PRIMARY">
+    <key id="254" parent="31" name="PRIMARY">
       <ColNames>row_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="254" parent="32" name="chang_shang">
+    <column id="255" parent="32" name="chang_shang">
       <Position>1</Position>
       <Comment>厂商</Comment>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="255" parent="32" name="row_id">
+    <column id="256" parent="32" name="row_id">
       <Position>2</Position>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="256" parent="33" name="medicine_type_id">
+    <column id="257" parent="33" name="medicine_type_id">
       <Position>1</Position>
       <Comment>药品类别id</Comment>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="257" parent="33" name="medicine_type_name">
+    <column id="258" parent="33" name="medicine_type_name">
       <Position>2</Position>
       <Comment>药品类别名称</Comment>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="258" parent="33" name="medicine_parent_type_id">
+    <column id="259" parent="33" name="medicine_parent_type_id">
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <column id="259" parent="33" name="medicine_parent_type_name">
+    <column id="260" parent="33" name="medicine_parent_type_name">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="260" parent="33" name="medicine_name">
+    <column id="261" parent="33" name="medicine_name">
       <Position>5</Position>
       <Comment>药品名称</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="261" parent="34" name="v_user_key">
+    <column id="262" parent="34" name="v_user_key">
       <Position>1</Position>
       <DataType>varchar(80)|0</DataType>
     </column>
-    <column id="262" parent="34" name="org_name">
+    <column id="263" parent="34" name="org_name">
       <Position>2</Position>
       <Comment>组织名称</Comment>
       <DataType>varchar(80)|0</DataType>
     </column>
-    <column id="263" parent="34" name="p_org_id">
+    <column id="264" parent="34" name="p_org_id">
       <Position>3</Position>
       <Comment>父组织ID</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="264" parent="34" name="p_org_name">
+    <column id="265" parent="34" name="p_org_name">
       <Position>4</Position>
       <Comment>父组织名称</Comment>
       <DataType>varchar(80)|0</DataType>
     </column>
-    <column id="265" parent="34" name="org_type">
+    <column id="266" parent="34" name="org_type">
       <Position>5</Position>
       <Comment>组织类别</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="266" parent="34" name="org_id">
+    <column id="267" parent="34" name="org_id">
       <Position>6</Position>
       <Comment>主键</Comment>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="267" parent="34" name="user_name">
+    <column id="268" parent="34" name="user_name">
       <Position>7</Position>
       <Comment>用户名称</Comment>
       <DataType>varchar(80)|0</DataType>
     </column>
-    <column id="268" parent="34" name="user_password">
+    <column id="269" parent="34" name="user_password">
       <Position>8</Position>
       <Comment>用户英文名称</Comment>
       <DataType>varchar(80)|0</DataType>
     </column>
-    <column id="269" parent="34" name="user_id">
+    <column id="270" parent="34" name="user_id">
       <Position>9</Position>
       <Comment>用户帐号</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="270" parent="34" name="user_type">
+    <column id="271" parent="34" name="user_type">
       <Position>10</Position>
       <Comment>用户类型</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="271" parent="34" name="user_mobile_num">
+    <column id="272" parent="34" name="user_mobile_num">
       <Position>11</Position>
       <Comment>手机号</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="272" parent="34" name="user_status">
+    <column id="273" parent="34" name="user_status">
       <Position>12</Position>
       <Comment>状态</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="273" parent="34" name="sys_color_id">
+    <column id="274" parent="34" name="sys_color_id">
       <Position>13</Position>
       <Comment>系统皮肤</Comment>
       <DataType>varchar(80)|0</DataType>
     </column>
-    <column id="274" parent="34" name="user_card_id">
+    <column id="275" parent="34" name="user_card_id">
       <Position>14</Position>
       <Comment>身份证</Comment>
       <DataType>varchar(80)|0</DataType>
     </column>
-    <column id="275" parent="34" name="com_org_id">
+    <column id="276" parent="34" name="com_org_id">
       <Position>15</Position>
       <Comment>组织所属单位ID</Comment>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="276" parent="34" name="com_bd_id">
+    <column id="277" parent="34" name="com_bd_id">
       <Position>16</Position>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="277" parent="34" name="data_order">
+    <column id="278" parent="34" name="data_order">
       <Position>17</Position>
       <Comment>排序</Comment>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="278" parent="34" name="uio_row_id">
+    <column id="279" parent="34" name="uio_row_id">
       <Position>18</Position>
       <Comment>主键</Comment>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="279" parent="34" name="user_row_id">
+    <column id="280" parent="34" name="user_row_id">
       <Position>19</Position>
       <Comment>主键</Comment>
       <DataType>varchar(40)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="280" parent="34" name="client_id">
+    <column id="281" parent="34" name="client_id">
       <Position>20</Position>
       <DataType>varchar(80)|0</DataType>
     </column>
