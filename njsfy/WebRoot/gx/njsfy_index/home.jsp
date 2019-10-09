@@ -25,6 +25,9 @@
         function yunQiAnQuan() {
             window.open("<%=basePath%>njsfy-index/home.do?bolAnQuan=bol");
         }
+        function gaoWei() {
+            window.open("<%=basePath%>njsfy-index/home.do?bolGaoWei=bol");
+        }
         function change1() {
             $(" #two2 ").val("")
             $(" #three3 ").val("")
@@ -172,10 +175,10 @@
         </div>
     </div>--%>
     <div class="contentrow">
-        <div class="contentdiv" onclick="shiyingzheng()">
+        <div class="contentdiv" onclick="gaoWei()">
             <div class="content_pic"><img src="images/img_menu6.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">其他
+                <p class="title">高危药品
                 </p>
                 <p class="titleC">高危药品、仅限高危药品列表
                 </p>

@@ -46,7 +46,9 @@ public class NjsfyWebController {
     private MedicineInstanceManager medicineInstanceManager;
 
     @RequestMapping("home")
-    public String home(@RequestParam Map<String, Object> parameterMap, String searchCS, String searchMedicine, String searchYl, String searchSyz, String bolS, String changShangName, String bolC, String bolAnQuan, String yqAqdj, Model model) {
+    public String home(@RequestParam Map<String, Object> parameterMap, String searchCS, String searchMedicine,
+                       String searchYl, String searchSyz, String bolS,
+                       String changShangName, String bolC, String bolAnQuan, String yqAqdj,String bolGaoWei, Model model) {
         medicineInstanceList1 = new ArrayList<>();
         changShangList1 = new ArrayList<>();
         this.name = null;
@@ -95,6 +97,12 @@ public class NjsfyWebController {
         } else if (bolAnQuan != null && bolAnQuan.equals("bol")) {
             vYqaqdjManagerList = vYqaqdjManager.getAll();
             model.addAttribute("bolAnQuan", "bol");
+        }else if(bolGaoWei!=null && bolGaoWei.equals("bol")){
+            String hql = "from MedicineInstance where isGwy=?";
+            model.addAttribute("serachName", "高危药品");
+            this.name = "高危药品";
+            medicineInstanceList = medicineInstanceManager.find(hql, "是");
+
         }
         if (vYqaqdjManagerList.size() > 0) {
             if (vYqaqdjManagerList.size() > 0) {
@@ -254,7 +262,7 @@ public class NjsfyWebController {
             medicineInstanceList = medicineInstanceManager.find(hql, vis.getRowId());
             if (medicineInstanceList.size() > 0) {
                 for (MedicineInstance medicineInstance : medicineInstanceList) {
-                    ZtreeData zData1 = new ZtreeData(medicineInstance.getRowId(), vis.getRowId(), medicineInstance.getMedicineName(), medicineInstance.getMedicineName(), true, true);
+                    ZtreeData zData1 = new ZtreeData(medicineInstance.getRowId(), vis.getRowId(), medicineInstance.getMedicineName()+"("+medicineInstance.getMedicineGuige()+")", medicineInstance.getMedicineName(), true, true);
                     ztreeData.add(zData1);
                 }
             }
