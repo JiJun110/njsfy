@@ -8,9 +8,11 @@ body.lb-disable-scrolling {
 	left: 0;
 	z-index: 9999;
 	background-color: black;
+	height: 1500px;
 	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
 	opacity: 0.8;
 	display: none;
+
 }
 
 .lightbox {

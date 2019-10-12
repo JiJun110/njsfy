@@ -8,7 +8,6 @@ import com.gx.core.util.StringUtils;
 import com.gx.core.util.ZipUtils;
 import com.gx.soft.common.util.DateUtil;
 import com.gx.soft.common.util.FileUtil;
-import com.gx.soft.common.util.PicUtil;
 import com.gx.soft.medicineTree.persistence.domain.Attachment;
 import com.gx.soft.medicineTree.persistence.domain.MedicineInstance;
 import com.gx.soft.medicineTree.persistence.domain.MedicineType;
@@ -46,9 +45,9 @@ public class MedinineInstanceController {
     @Autowired
     private AttachMentManager attachMentManager;
 
-    private String bol_a=null;
-    private String bol_c=null;
-    private List<String> rowIdList=new ArrayList<String>();
+    private String bol_a = null;
+    private String bol_c = null;
+    private List<String> rowIdList = new ArrayList<String>();
 
     @RequestMapping(value = "medicineInstance-list")
     public String showColumnArticleManagerList(@ModelAttribute Page page,
@@ -63,14 +62,15 @@ public class MedinineInstanceController {
         return "medicineTree/medicineInstance/medicineInstance-list";
     }
 
-   @RequestMapping("medicineInstance-input")
-    public String medicineInstanceInput( String bol,Model model) {
-        this.bol_a=bol;
-        MedicineInstance medicineInstance=new MedicineInstance();
-       model.addAttribute("bol_a", bol_a);
+    @RequestMapping("medicineInstance-input")
+    public String medicineInstanceInput(String bol, Model model) {
+        this.bol_a = bol;
+        MedicineInstance medicineInstance = new MedicineInstance();
+        model.addAttribute("bol_a", bol_a);
         model.addAttribute("medicineInstance", medicineInstance);
         return "medicineTree/medicineInstance/medicineInstance-input";
     }
+
     @RequestMapping("lookup-medicineType-list")
     public String orgLookupList(@ModelAttribute Page page,
                                 @RequestParam Map<String, Object> parameterMap, Model model) {
@@ -86,7 +86,7 @@ public class MedinineInstanceController {
 
     @RequestMapping(value = "remove")
     @ResponseBody
-    public Map<String, Object> reMove(String bol_b,String delids) {
+    public Map<String, Object> reMove(String bol_b, String delids) {
         Map<String, Object> resMap = new HashMap<String, Object>();
         String statusCode = "200", message = "删除成功";
         try {
@@ -104,9 +104,9 @@ public class MedinineInstanceController {
         }
         resMap.put("statusCode", statusCode);
         resMap.put("message", message);
-        if(bol_b!=null && bol_b.equals("b")){
+        if (bol_b != null && bol_b.equals("b")) {
             resMap.put("divid", "article-manager-view-list");
-        }else {
+        } else {
             resMap.put("reload", true);
         }
         return resMap;
@@ -123,14 +123,16 @@ public class MedinineInstanceController {
         resMap.put("message", "下载成功");
         return resMap;
     }
+    
     /**
      * 批量下载
-     * @param request 请求
+     *
+     * @param request  请求
      * @param response 返回
      */
     @RequestMapping(value = "fileDownload-attach")
     @ResponseBody
-    public Map<String, Object>  batchDownloadFiles(String delids,HttpServletRequest request,HttpServletResponse response) {
+    public Map<String, Object> batchDownloadFiles(String delids, HttpServletRequest request, HttpServletResponse response) {
 
         //读取前端传来json字段
         String[] ids = delids.split(",");
@@ -140,20 +142,20 @@ public class MedinineInstanceController {
         String fileSaveRootPath = request.getSession().getServletContext().getRealPath("/");
 
         //创建zip文件并返回zip文件路径
-        List<String>filaPathList=new ArrayList<>();
-        List<String>fileNameList=new ArrayList<>();
-        for(String id:ids){
+        List<String> filaPathList = new ArrayList<>();
+        List<String> fileNameList = new ArrayList<>();
+        for (String id : ids) {
             Attachment fileRecord = attachMentManager.get(id);
-            if(fileRecord!=null){
+            if (fileRecord != null) {
                 filaPathList.add(fileRecord.getFilePath());
                 fileNameList.add(fileRecord.getFileName());
             }
         }
-        if(filaPathList.size()==1){
+        if (filaPathList.size() == 1) {
             FileUtil fileHelper = new FileUtil();
             fileHelper.downloadFile(filaPathList.get(0), request, response, fileNameList.get(0));
-        }else{
-            String zipPath = new ZipUtils().createZipAndReturnPath(JSONObject.toJSONString(filaPathList), JSONObject.toJSONString(fileNameList),fileSaveRootPath);
+        } else {
+            String zipPath = new ZipUtils().createZipAndReturnPath(JSONObject.toJSONString(filaPathList), JSONObject.toJSONString(fileNameList), fileSaveRootPath);
             try {
                 response.reset();
                 response.setCharacterEncoding("UTF-8");
@@ -190,18 +192,18 @@ public class MedinineInstanceController {
                                          HttpServletResponse response) throws IOException {
         Map<String, Object> resMap = new HashMap<String, Object>();
         String[] ids = delids.split(",");
-        resMap.put("ids",ids);
+        resMap.put("ids", ids);
 
-        for(String id:ids){
+        for (String id : ids) {
             Attachment fileRecord = attachMentManager.get(id);
-            if(fileRecord!=null) {
+            if (fileRecord != null) {
                 String filePath = fileRecord.getFilePath();
                 String fileName = fileRecord.getFileName();
                 System.out.println(fileName);
                 FileUtil fileHelper = new FileUtil();
 
                 fileHelper.downloadFile(filePath, request, response, fileName);
-            }else {
+            } else {
                 resMap.put("statusCode", "300");
                 resMap.put("message", "下载失败");
             }
@@ -215,12 +217,11 @@ public class MedinineInstanceController {
     }
 
 
-
     @RequestMapping("delete-attach")
     @ResponseBody
-    public Map<String, Object> delete(@RequestParam String delids){
+    public Map<String, Object> delete(@RequestParam String delids) {
         Map<String, Object> resMap = new HashMap<String, Object>();
-        List<String> row_ides=new ArrayList<>();
+        List<String> row_ides = new ArrayList<>();
         String statusCode = "200", message = "删除成功";
 
         try {
@@ -229,7 +230,7 @@ public class MedinineInstanceController {
                 for (String rowId : ids) {
                     if (rowId != null && rowId.length() > 0 && !rowId.equals("on")) {
                         row_ides.add(rowId);
-                        String filePath=attachMentManager.get(rowId).getFilePath();
+                        String filePath = attachMentManager.get(rowId).getFilePath();
                         FileUtil fileHelper = new FileUtil();
                         boolean isDelete = true;
                         try {
@@ -254,9 +255,10 @@ public class MedinineInstanceController {
         }
         resMap.put("statusCode", statusCode);
         resMap.put("message", message);
-        resMap.put("row_ides",row_ides);
+        resMap.put("row_ides", row_ides);
         return resMap;
     }
+
     @RequestMapping(value = "medicineInstance-import")
     public String medicineTreeImport() {
         return "medicineTree/medicineInstance/medicineInstance-import";
@@ -307,10 +309,14 @@ public class MedinineInstanceController {
 //        }
         return resMap;
     }
+    @RequestMapping("fileupload-attach1")
+    public void c(){
+
+    }
     @RequestMapping("fileupload-attach")
     @ResponseBody
     public Map<String, Object> fileUploadAttach(@RequestParam MultipartFile file,
-                                          Model model, HttpSession session
+                                                Model model, HttpSession session
     ) throws IOException {
         Map<String, Object> resMap = new HashMap<String, Object>();
         VUser user = (VUser) session.getAttribute("user_session");
@@ -324,9 +330,9 @@ public class MedinineInstanceController {
             if (!StringUtils.isEmpty(fileOriginalName)) {
                 FileUtil fileHelper = new FileUtil();
                 String decodeFileName = fileHelper.getDecodeFileName(fileOriginalName);// 文件名编码
-                if(!decodeFileName.contains(".jpg") ){
-                    if(!decodeFileName.contains(".png")){
-                        decodeFileName+="jpg";
+                if (!decodeFileName.contains(".jpg")) {
+                    if (!decodeFileName.contains(".png")) {
+                        decodeFileName += "jpg";
                     }
 
                 }
@@ -336,12 +342,12 @@ public class MedinineInstanceController {
                 String uuid = UUID.randomUUID().toString();
                 String pathName = File.separator + uuid + "."
                         + FilenameUtils.getExtension(file.getOriginalFilename());
-                String oldPath="D:\\img\\"+pathName;
-                fileHelper.createFile(oldPath,file.getBytes());
+                String oldPath = "D:\\img\\" + pathName;
+          /*      fileHelper.createFile(oldPath, file.getBytes());
                 PicUtil.commpressPicForScaleSize(oldPath,
-                        mFilePath, 1000,0.25);
+                        mFilePath, 1000, 0.25);*/
 
-                /*fileHelper.createFile(mFilePath, file.getBytes());*/
+                fileHelper.createFile(mFilePath, file.getBytes());
                 attachment.setFilePath(mFilePath);
                 attachment.setUploadUserName(user.getUserId());
                 attachment.setUploadUserId(user.getUserName());
@@ -362,11 +368,12 @@ public class MedinineInstanceController {
             e.printStackTrace();
         }
         resMap.put("AttachEntity", attachment);
-        if(attachment.getRowId()!=null) {
+        if (attachment.getRowId() != null) {
             rowIdList.add(attachment.getRowId());
         }
         return resMap;
     }
+
     @RequestMapping(value = "medicineInstance-save", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public Map<String, Object> save(MedicineInstance medicineInstance, @ModelAttribute("user_session") VUser user) {
@@ -374,11 +381,11 @@ public class MedinineInstanceController {
         String statusCode = "200", message = "操作成功";
         Timestamp ts = DateUtil.getDate();
         try {
-            MedicineInstance dest ;
+            MedicineInstance dest;
             String id = medicineInstance.getRowId();
             if (id != null && id.length() > 0) {
                 dest = medicineInstanceManager.get(id);
-                String rowID=id;
+                String rowID = id;
                 dest.setUploadTime(ts);
                 dest.setUploadUser(user.getUserName());
                 for (int i = 0; i < rowIdList.size(); i++) {
@@ -399,8 +406,8 @@ public class MedinineInstanceController {
             dest.setTsCcTj(dest.getTsCcTj().trim());
             dest.setcSmSy(dest.getcSmSy().trim());
             medicineInstanceManager.save(dest);
-            String rowID=dest.getRowId();
-            if(rowID!=null) {
+            String rowID = dest.getRowId();
+            if (rowID != null) {
                 for (int i = 0; i < rowIdList.size(); i++) {
                     Attachment attachment = attachMentManager.get(rowIdList.get(i));
                     attachment.setRelationId(rowID);
@@ -416,44 +423,46 @@ public class MedinineInstanceController {
         resMap.put("statusCode", statusCode);
         resMap.put("message", message);
 
-        if(bol_a!=null && bol_a.equals("a")) {
+        if (bol_a != null && bol_a.equals("a")) {
             resMap.put("divid", "article-manager-view-list");
-        }
-        else if(bol_c!=null && bol_c.equals("c")) {
+        } else if (bol_c != null && bol_c.equals("c")) {
             resMap.put("divid", "article-manager-view-list");
-        }else {
+        } else {
             resMap.put("reload", true);
         }
         resMap.put("closeCurrent", true);
-        this.bol_a=null;
-        this.bol_c=null;
+        this.bol_a = null;
+        this.bol_c = null;
         return resMap;
     }
+
     @RequestMapping("edit")
-    public String edit(@RequestParam(value = "rowId", required = false) String rowId, String  bol,Model model) {
+    public String edit(@RequestParam(value = "rowId", required = false) String rowId, String bol, Model model) {
         MedicineInstance medicineInstance;
         medicineInstance = medicineInstanceManager.get(rowId);
-        String hql="from Attachment where relationId=?";
-        ArrayList<Attachment>fileRecordList= (ArrayList<Attachment>) attachMentManager.find(hql,rowId);
+        String hql = "from Attachment where relationId=?";
+        ArrayList<Attachment> fileRecordList = (ArrayList<Attachment>) attachMentManager.find(hql, rowId);
         model.addAttribute("medicineInstance", medicineInstance);
         model.addAttribute("fileRecordList", fileRecordList);
-        bol_c=bol;
-        if(bol==null){
-            bol="A";
+        bol_c = bol;
+        if (bol == null) {
+            bol = "A";
         }
         model.addAttribute("bol", bol);
         return "medicineTree/medicineInstance/medicineInstance-edit";
     }
+
     @RequestMapping("look")
     public String look(@RequestParam(value = "rowId", required = false) String rowId, Model model) {
         MedicineInstance medicineInstance;
         medicineInstance = medicineInstanceManager.get(rowId);
-        String hql="from Attachment where relationId=?";
-        ArrayList<Attachment>fileRecordList= (ArrayList<Attachment>) attachMentManager.find(hql,rowId);
+        String hql = "from Attachment where relationId=?";
+        ArrayList<Attachment> fileRecordList = (ArrayList<Attachment>) attachMentManager.find(hql, rowId);
         model.addAttribute("medicineInstance", medicineInstance);
         model.addAttribute("fileRecordList", fileRecordList);
         return "medicineTree/medicineInstance/medicineInstance-look";
     }
+
     @RequestMapping("import-save")
     public
     @ResponseBody
@@ -477,162 +486,162 @@ public class MedinineInstanceController {
                 /*if (row.getCell(1) == null) {
                     break;
                 }*/
-                if(rowCount==0){
-                    Boolean bol=true;
+                if (rowCount == 0) {
+                    Boolean bol = true;
                     if (row.getCell(0) != null) {
                         row.getCell(0).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(0).getStringCellValue().trim().equals("章节")){
-                            bol=false;
+                        if (!row.getCell(0).getStringCellValue().trim().equals("章节")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(1) != null) {
                         row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(1).getStringCellValue().trim().equals("药品名称")){
-                            bol=false;
+                        if (!row.getCell(1).getStringCellValue().trim().equals("药品名称")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(2) != null) {
                         row.getCell(2).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(2).getStringCellValue().trim().equals("药品规格")){
-                            bol=false;
+                        if (!row.getCell(2).getStringCellValue().trim().equals("药品规格")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(3) != null) {
                         row.getCell(3).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(3).getStringCellValue().trim().equals("价格")){
-                            bol=false;
+                        if (!row.getCell(3).getStringCellValue().trim().equals("价格")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(4) != null) {
                         row.getCell(4).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(4).getStringCellValue().trim().equals("厂商")){
-                            bol=false;
+                        if (!row.getCell(4).getStringCellValue().trim().equals("厂商")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(5) != null) {
                         row.getCell(5).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(5).getStringCellValue().trim().equals("警示")){
-                            bol=false;
+                        if (!row.getCell(5).getStringCellValue().trim().equals("警示")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(6) != null) {
                         row.getCell(6).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(6).getStringCellValue().trim().equals("适应症")){
-                            bol=false;
+                        if (!row.getCell(6).getStringCellValue().trim().equals("适应症")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(7) != null) {
                         row.getCell(7).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(7).getStringCellValue().trim().equals("用法用量")){
-                            bol=false;
+                        if (!row.getCell(7).getStringCellValue().trim().equals("用法用量")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(8) != null) {
                         row.getCell(8).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(8).getStringCellValue().trim().equals("哺乳期安全等级")){
-                            bol=false;
+                        if (!row.getCell(8).getStringCellValue().trim().equals("哺乳期安全等级")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(9) != null) {
                         row.getCell(9).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(9).getStringCellValue().trim().equals("孕期安全等级")){
-                            bol=false;
+                        if (!row.getCell(9).getStringCellValue().trim().equals("孕期安全等级")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(10) != null) {
                         row.getCell(10).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(10).getStringCellValue().trim().equals("是否基药")){
-                            bol=false;
+                        if (!row.getCell(10).getStringCellValue().trim().equals("是否基药")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(11) != null) {
                         row.getCell(11).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(11).getStringCellValue().trim().equals("是否高危药")){
-                            bol=false;
+                        if (!row.getCell(11).getStringCellValue().trim().equals("是否高危药")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(12) != null) {
                         row.getCell(12).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(12).getStringCellValue().trim().equals("医保类别")){
-                            bol=false;
+                        if (!row.getCell(12).getStringCellValue().trim().equals("医保类别")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(13) != null) {
                         row.getCell(13).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(13).getStringCellValue().trim().equals("药品所属目录")){
-                            bol=false;
+                        if (!row.getCell(13).getStringCellValue().trim().equals("药品所属目录")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(14) != null) {
                         row.getCell(14).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(14).getStringCellValue().trim().equals("特殊存储条件")){
-                            bol=false;
+                        if (!row.getCell(14).getStringCellValue().trim().equals("特殊存储条件")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(15) != null) {
                         row.getCell(15).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(15).getStringCellValue().trim().equals("超说明使用")){
-                            bol=false;
+                        if (!row.getCell(15).getStringCellValue().trim().equals("超说明使用")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
                     if (row.getCell(16) != null) {
                         row.getCell(16).setCellType(Cell.CELL_TYPE_STRING);
-                        if(!row.getCell(16).getStringCellValue().trim().equals("是否皮试")){
-                            bol=false;
+                        if (!row.getCell(16).getStringCellValue().trim().equals("是否皮试")) {
+                            bol = false;
                         }
-                    }else{
-                        bol=false;
+                    } else {
+                        bol = false;
                     }
-                    if(!bol){
+                    if (!bol) {
                         statusCode = "300";
                         message = "操作失败,请使用我们提供的模板操作";
                         resMap.put("statusCode", statusCode);
                         resMap.put("message", message);
                         resMap.put("reload", true);
-                      //  resMap.put("divid", "user-manager-user-list1");
+                        //  resMap.put("divid", "user-manager-user-list1");
                         return resMap;
                     }
                 }
                 if (rowCount != 0) {
-                    int cBol=0;
-                    String medicineTypeName=null;
+                    int cBol = 0;
+                    String medicineTypeName = null;
                     if (row.getCell(0) != null) {
                         row.getCell(0).setCellType(Cell.CELL_TYPE_STRING);
                         medicineTypeName = row.getCell(0).getStringCellValue();
                     }
-                    if(medicineTypeName==null || medicineTypeName.length()==0){
+                    if (medicineTypeName == null || medicineTypeName.length() == 0) {
                         cBol++;
                     }
                     String medicineName = null;
@@ -640,7 +649,7 @@ public class MedinineInstanceController {
                         row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
                         medicineName = row.getCell(1).getStringCellValue();
                     }
-                    if(medicineName==null || medicineName.length()==0){
+                    if (medicineName == null || medicineName.length() == 0) {
                         cBol++;
                     }
                     String yaoPingGuiGe = null;
@@ -648,7 +657,7 @@ public class MedinineInstanceController {
                         row.getCell(2).setCellType(Cell.CELL_TYPE_STRING);
                         yaoPingGuiGe = row.getCell(2).getStringCellValue();
                     }
-                    if(yaoPingGuiGe==null || yaoPingGuiGe.length()==0){
+                    if (yaoPingGuiGe == null || yaoPingGuiGe.length() == 0) {
                         cBol++;
                     }
                     String price = null;
@@ -656,7 +665,7 @@ public class MedinineInstanceController {
                         row.getCell(3).setCellType(Cell.CELL_TYPE_STRING);
                         price = row.getCell(3).getStringCellValue();
                     }
-                    if(price==null || price.length()==0){
+                    if (price == null || price.length() == 0) {
                         cBol++;
                     }
                     String changShang = null;
@@ -664,7 +673,7 @@ public class MedinineInstanceController {
                         row.getCell(4).setCellType(Cell.CELL_TYPE_STRING);
                         changShang = row.getCell(4).getStringCellValue();
                     }
-                    if(changShang==null || changShang.length()==0){
+                    if (changShang == null || changShang.length() == 0) {
                         cBol++;
                     }
                     String warn = null;
@@ -672,7 +681,7 @@ public class MedinineInstanceController {
                         row.getCell(5).setCellType(Cell.CELL_TYPE_STRING);
                         warn = row.getCell(5).getStringCellValue();
                     }
-                    if(warn==null || warn.length()==0){
+                    if (warn == null || warn.length() == 0) {
                         cBol++;
                     }
                     String shiYingZheng = null;
@@ -680,7 +689,7 @@ public class MedinineInstanceController {
                         row.getCell(6).setCellType(Cell.CELL_TYPE_STRING);
                         shiYingZheng = row.getCell(6).getStringCellValue();
                     }
-                    if(shiYingZheng==null || shiYingZheng.length()==0){
+                    if (shiYingZheng == null || shiYingZheng.length() == 0) {
                         cBol++;
                     }
                     String yongFaYongLiang = null;
@@ -688,7 +697,7 @@ public class MedinineInstanceController {
                         row.getCell(7).setCellType(Cell.CELL_TYPE_STRING);
                         yongFaYongLiang = row.getCell(7).getStringCellValue();
                     }
-                    if(yongFaYongLiang==null || yongFaYongLiang.length()==0){
+                    if (yongFaYongLiang == null || yongFaYongLiang.length() == 0) {
                         cBol++;
                     }
                     String buRuiQiAnQuanDengJi = null;
@@ -696,7 +705,7 @@ public class MedinineInstanceController {
                         row.getCell(8).setCellType(Cell.CELL_TYPE_STRING);
                         buRuiQiAnQuanDengJi = row.getCell(8).getStringCellValue();
                     }
-                    if(buRuiQiAnQuanDengJi==null || buRuiQiAnQuanDengJi.length()==0){
+                    if (buRuiQiAnQuanDengJi == null || buRuiQiAnQuanDengJi.length() == 0) {
                         cBol++;
                     }
                     String yunQiAnQuanDengJi = null;
@@ -741,12 +750,12 @@ public class MedinineInstanceController {
                         row.getCell(16).setCellType(Cell.CELL_TYPE_STRING);
                         sfPs = row.getCell(16).getStringCellValue();
                     }
-                    if(cBol>=4){
+                    if (cBol >= 4) {
                         resMap.put("statusCode", statusCode);
                         resMap.put("message", message);
                         resMap.put("reload", true);
                         resMap.put("closeCurrent", true);
-                       // resMap.put("co")
+                        // resMap.put("co")
                         //resMap.put("divid", "user-manager-user-list1");
 
                         return resMap;
@@ -756,12 +765,12 @@ public class MedinineInstanceController {
                     MedicineType medicineType = null;
                     medicineType = medicineTypeManager.findUniqueBy("medicineTypeName", medicineTypeName.trim());
                     if (medicineType == null) {
-                  /*      System.out.println("*******************************");
+                        System.out.println("*******************************");
                         System.out.println(medicineTypeName);
                         System.out.println(cBol);
-                        System.out.println("*******************************");*/
+                        System.out.println("*******************************");
                         statusCode = "300";
-                        message = "操作失败,请检查章节";
+                        message = "操作失败,请检查类别："+medicineTypeName;
                         resMap.put("statusCode", statusCode);
                         resMap.put("message", message);
                         resMap.put("reload", true);

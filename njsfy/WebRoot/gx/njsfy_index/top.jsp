@@ -1,8 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ include file="/common/taglibs.jsp"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ include file="/common/taglibs.jsp" %>
 <%
     String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 
 <script src="<%=request.getContextPath()%>/gx/BJUI/js/jquery-1.7.2.min.js"></script>
@@ -14,45 +14,45 @@
 <%--<link rel="stylesheet" href="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.css" type="text/css"></link>
 <script type="text/javascript" src="<%=request.getContextPath()%>/gx/njsfy_index/js/jquery.lightbox.min.js"></script>--%>
 <style>
-  /*  ul.ztree {
-        margin-left: 0px;
-        margin-top: -2px;
-        border: 1px solid #617775;
-        background: #f0f6e4;
-        width: 270px;
-        height: 500px;
-        overflow-y: scroll;
-        overflow-x: auto;
-    }*/
+    /*  ul.ztree {
+          margin-left: 0px;
+          margin-top: -2px;
+          border: 1px solid #617775;
+          background: #f0f6e4;
+          width: 270px;
+          height: 500px;
+          overflow-y: scroll;
+          overflow-x: auto;
+      }*/
 </style>
 <script>
-  /*  //图片放大预览
-    jQuery(document).ready(function($){
-        $('.lightbox').lightbox();
-    });*/
+    /*  //图片放大预览
+     jQuery(document).ready(function($){
+     $('.lightbox').lightbox();
+     });*/
 </script>
 <script>
-    var rowIdList=new Array();
+    var rowIdList = new Array();
     function allClick() {
-        var selectedCheckList=$(".selectedCheck");
-        for(var i=0;i<selectedCheckList.length;i++){
-            if($("#allselected").is(':checked')){
-                $(selectedCheckList[i]).attr("checked",true);
+        var selectedCheckList = $(".selectedCheck");
+        for (var i = 0; i < selectedCheckList.length; i++) {
+            if ($("#allselected").is(':checked')) {
+                $(selectedCheckList[i]).attr("checked", true);
                 rowIdList.push($(selectedCheckList[i]).val());
-            }else{
-                $(selectedCheckList[i]).attr("checked",false);
-                rowIdList.length=0;
+            } else {
+                $(selectedCheckList[i]).attr("checked", false);
+                rowIdList.length = 0;
             }
         }
     }
     function selectedOne(rowId) {
 
-        if($("#"+rowId).is(':checked')){
-            $("#"+rowId).attr("checked",true);
-            rowIdList.push($("#"+rowId).val());
-        }else{
-            $("#"+rowId).attr("checked",false);
-            var index = rowIdList.indexOf($("#"+rowId).val());
+        if ($("#" + rowId).is(':checked')) {
+            $("#" + rowId).attr("checked", true);
+            rowIdList.push($("#" + rowId).val());
+        } else {
+            $("#" + rowId).attr("checked", false);
+            var index = rowIdList.indexOf($("#" + rowId).val());
             if (index > -1) {
                 rowIdList.splice(index, 1);
             }
@@ -60,28 +60,33 @@
         }
     }
     function downloadAttach() {
-        if(rowIdList.length>0){
-            location.href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList="+rowIdList;
+        if (rowIdList.length > 0) {
+            location.href = "<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=" + rowIdList;
         }
 
     }
-   /* function lookAttach(rowId) {
-        location.href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList="+rowId;
+    /* function lookAttach(rowId) {
+     location.href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList="+rowId;
 
-    }*/
+     }*/
 </script>
 
-    <!-- for doc end -->
+<!-- for doc end -->
 <div class="detail">
     <div class="drugxx">
         <div class="drugname">
-            <div class="drug">${medicineInstance.medicineName}</div>
+            <div class="drug">${medicineInstance.medicineName}
+                <c:if test="${medicineInstance.medicineGuige!=null}">
+                    (${medicineInstance.medicineGuige})
+                </c:if>
+                </div>
             <div class="drugfirm">厂商：${medicineInstance.changShang}</div>
         </div>
         <div class="drugprice">
 
             <div class="stock">
-                <div class="detail_img"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_stock.png" width="52" height="52" /></div>
+                <div class="detail_img"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_stock.png"
+                                             width="52" height="52"/></div>
                 <div class="detail_word">
                     <div><span class="font18">156</span> 盒
                     </div>
@@ -89,7 +94,8 @@
                 </div>
             </div>
             <div class="price">
-                <div class="detail_img"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_price.png" width="52" height="52" /></div>
+                <div class="detail_img"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_price.png"
+                                             width="52" height="52"/></div>
                 <div class="detail_word">
                     <div><span class="font18">${medicineInstance.price}</span> 元</div>
                     <div>价格</div>
@@ -100,9 +106,9 @@
             <span class="lactation_z pregnancy">孕期安全等级：${medicineInstance.brqAqdj}</span>
             <span class="lactation_z lactation">哺乳期安全等级：${medicineInstance.yqAqdj}</span>
             <span class="lactation_z expense">医保类型：${medicineInstance.ybType}</span>
-        <%-- <span class="lactation_z lactation">是否皮试：${medicineInstance.isPs==null}</span>--%>
+            <%-- <span class="lactation_z lactation">是否皮试：${medicineInstance.isPs==null}</span>--%>
             <c:if test="${medicineInstance.isPs=='是'}">
-                <span class="lactation_z medicine">需要皮试</span>
+                <span class="lactation_z medicine" style="background: #2ebe6d;">需要皮试</span>
             </c:if>
             <c:if test="${medicineInstance.isJy=='是'}">
                 <span class="lactation_z medicine">基药</span>

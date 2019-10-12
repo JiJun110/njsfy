@@ -30,6 +30,9 @@
 
 <script>
     var rowIdList=new Array();
+    function yulan(rowId) {
+        window.open('<%=basePath%>/gx/njsfy_index/js/pdfjs/web/viewer.html?file=' +encodeURIComponent('<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList='+rowId));
+    }
     function allClick() {
         var selectedCheckList=$(".selectedCheck");
         for(var i=0;i<selectedCheckList.length;i++){
@@ -99,7 +102,7 @@
 <div class="detail_contain" style="margin-top:20px;">
     <div class="detail_title">
         <span class="line"></span>附件
-        <input name="" type="button" value="下载选中" class="button" onclick="downloadAttach()" style="float: right;margin-right: 20px;"/>
+        <input name="" type="button" value="下载选中" class="button" onclick="downloadAttach()" style="float: right;margin-right: 46px;"/>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="fjtable" align="center">
             <tr class="fjtitle">
                 <td><input id="allselected" name="Fruit" type="checkbox" value="" onclick="allClick()"/> </td>
@@ -116,9 +119,12 @@
                     <td align="center">${bean.uploadTime}</td>
                     <td align="center">
                             <%--   <c:if test="${(status.index)==0}">--%>
-                            <a  href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" data-lightbox="image-1" width="200" height="200" data-title="My caption">
+                           <%--<a  href="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" data-lightbox="image-1" width="200" height="200" data-title="My caption">
                                 <img  class="tImg" src="<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" width="40" height="40" />
-                            </a>
+                            </a>--%>
+                                <button  class="button" onclick="yulan('${bean.rowId}')" >预览</button>
+                               <%-- <a  href="<%=basePath%>/gx/njsfy_index/js/pdfjs/web/viewer.html?file=<%=basePath%>njsfy-index/fileDownload-attach.do?rowIdList=${bean.rowId}" >123</a>--%>
+
                       <%--  </c:if>--%>
                       <%--  <c:if test="${(status.index)!=0}">
                             123123
@@ -138,6 +144,11 @@
             $('.tImg').lightbox();*!/
         });
     });*/
+</script>
+<script>
+    lightbox.option({
+        'fitImagesInViewport': false
+    })
 </script>
 
 

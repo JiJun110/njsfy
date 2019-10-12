@@ -39,7 +39,7 @@
             multi_selection: true,
             filters: {
                 mime_types: [ //只允许上传图片
-                    {title: "video files", extensions: "png,jpg"}
+                    {title: "video files", extensions: "pdf"}
                 ],
                 max_file_size: '100mb', //最大只能上传50mb的文件
                 prevent_duplicates: true //不允许选取重复文件

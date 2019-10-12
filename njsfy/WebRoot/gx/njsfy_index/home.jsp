@@ -185,7 +185,7 @@
             </div>
         </div>
     </div>
-<%--    <div style="clear:both; display:block; width:100%; text-align:center; padding-top:20px;"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/img_bottom.jpg" width="278" height="79" /></div>--%>
+<div style="clear:both; display:block; width:100%; text-align:center; padding-top:20px;"><img src="<%=request.getContextPath()%>/gx/njsfy_index/images/logo(2).png" width="278" height="79" /></div>
 </div>
 </body>
 </html>
