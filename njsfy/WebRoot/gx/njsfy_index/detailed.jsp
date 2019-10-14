@@ -28,6 +28,7 @@
         height: 100%;
 
     }
+
 </style>
 <%--<script>
     //图片放大预览
@@ -161,6 +162,14 @@
         return (treeNode.click != false);
     }
     function onClick(event, treeId, treeNode, clickFlag) {
+        console.log("event："+event)
+        console.log("treeId："+treeId)
+        console.log("clickFlag："+clickFlag)
+        console.log("treeNode："+treeNode)
+
+      /*  $(this).css({"background-color": "red"});*/
+
+
         $.ajax({
             url:'<%=basePath%>njsfy-index/medicine-instance1.do?rowId='+treeNode.id,
             type:'get',

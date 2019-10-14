@@ -144,7 +144,7 @@
                             <li onclick="getMedicineInstance('${bean.rowId}')">
                                 <div >
                                     <h3 class="resultlink" ><a  >${bean.changShang} </a> </h3>
-                                    <p> <b>商品名：</b>${bean.medicineName}&nbsp;&nbsp;&nbsp;&nbsp; <b>成份：</b> <br/>
+                                    <p> <b>通用名：</b>${bean.medicineName}&nbsp;&nbsp;&nbsp;&nbsp; <b></b> <br/>
                                         <b>适应症：</b>${bean.syz}</p>
                                 </div>
                                 <div class="fr"> </div>

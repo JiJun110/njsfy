@@ -113,7 +113,7 @@
             <div class="content_words">
                 <p class="title">药物类别索引
                 </p>
-                <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
+                <p class="titleC">药物目录索引
                 </p>
             </div>
         </div>
@@ -124,7 +124,7 @@
             <div class="content_words">
                 <p class="title">适应症索引
                 </p>
-                <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
+                <p class="titleC">含适应症药物索引
                 </p>
             </div>
         </div>
@@ -133,9 +133,9 @@
         <div class="contentdiv" onclick="shiyingzheng()">
             <div class="content_pic"><img src="images/img_menu3.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">儿童哺乳期
+                <p class="title">哺乳期危险
                 </p>
-                <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
+                <p class="titleC">该类药物索引
                 </p>
             </div>
         </div>
@@ -147,7 +147,7 @@
             <div class="content_words">
                 <p class="title">基本药物
                 </p>
-                <p class="titleC">基本药物类别索引
+                <p class="titleC">基本药物目录索引
                 </p>
             </div>
         </div>
@@ -156,9 +156,9 @@
         <div class="contentdiv" onclick="yunQiAnQuan()">
             <div class="content_pic"><img src="images/img_menu5.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">孕期安全等级
+                <p class="title">妊娠期危害分级
                 </p>
-                <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
+                <p class="titleC">该类药物索引
                 </p>
             </div>
         </div>
@@ -180,7 +180,7 @@
             <div class="content_words">
                 <p class="title">高危药品
                 </p>
-                <p class="titleC">高危药品、仅限高危药品列表
+                <p class="titleC">高危药品目录索引
                 </p>
             </div>
         </div>

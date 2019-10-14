@@ -103,18 +103,19 @@
             </div>
         </div>
         <div class="category">
-            <span class="lactation_z pregnancy">孕期安全等级：${medicineInstance.brqAqdj}</span>
-            <span class="lactation_z lactation">哺乳期安全等级：${medicineInstance.yqAqdj}</span>
-            <span class="lactation_z expense">医保类型：${medicineInstance.ybType}</span>
+            <span class="lactation_z pregnancy">妊娠期危害等级：${medicineInstance.brqAqdj}</span>
+            <span class="lactation_z expense">哺乳期危险等级：${medicineInstance.yqAqdj}</span>
+            <span class="lactation_z lactation">医保类型：${medicineInstance.ybType}</span>
             <%-- <span class="lactation_z lactation">是否皮试：${medicineInstance.isPs==null}</span>--%>
-            <c:if test="${medicineInstance.isPs=='是'}">
-                <span class="lactation_z medicine" style="background: #2ebe6d;">需要皮试</span>
-            </c:if>
+
             <c:if test="${medicineInstance.isJy=='是'}">
-                <span class="lactation_z medicine">基药</span>
+                <span class="lactation_z medicine" style="background: green;">基药</span>
             </c:if>
             <c:if test="${medicineInstance.isGwy=='是'}">
-                <span class="lactation_z risk">高危药品</span>
+                <span class="lactation_z risk" style="background: red;">高危药品</span>
+            </c:if>
+            <c:if test="${medicineInstance.isPs=='是'}">
+                <span class="lactation_z risk" style="">需要皮试</span>
             </c:if>
         </div>
     </div>
