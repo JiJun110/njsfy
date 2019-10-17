@@ -173,6 +173,13 @@
                     <td style=" border: 0;">
                         <input type="number" name="price"  value="${medicineInstance.price}" data-rule="required" size="20">
                     </td>
+                    <td style=" border: 0;">
+                        <label class="control-label x90" style="width: 105px;">单位：</label>
+                    </td>
+                    <td style=" border: 0;">
+                        <input type="text" name="ext2" value="${medicineInstance.ext2}"
+                               size="20">
+                    </td>
                 </tr>
 
 

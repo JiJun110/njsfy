@@ -131,7 +131,7 @@
                     </td>
                     <td style=" border: 0;">
                         <input type="text" name="medicineName" value="${medicineInstance.medicineName}"
-                               data-rule="required" size="20">
+                                size="20">
                     </td>
                 </tr>
 
@@ -141,13 +141,20 @@
                     </td>
                     <td style=" border: 0;">
                         <input type="text" name="medicineGuige" value="${medicineInstance.medicineGuige}"
-                               data-rule="required" size="20">
+                                size="20">
                     </td>
                     <td style=" border: 0;">
                         <label class="control-label x90" style="width: 105px;">价格：</label>
                     </td>
                     <td style=" border: 0;">
-                        <input type="number" name="price" value="${medicineInstance.price}" data-rule="required"
+                        <input type="number" name="price" value="${medicineInstance.price}" 
+                               size="20">
+                    </td>
+                    <td style=" border: 0;">
+                        <label class="control-label x90" style="width: 105px;">单位：</label>
+                    </td>
+                    <td style=" border: 0;">
+                        <input type="text" name="ext2" value="${medicineInstance.ext2}" 
                                size="20">
                     </td>
                 </tr>
@@ -158,14 +165,14 @@
                         <label class="control-label x90" style="width: 105px;">厂商：</label>
                     </td>
                     <td style=" border: 0;">
-                        <input type="text" name="changShang" value="${medicineInstance.changShang}" data-rule="required"
+                        <input type="text" name="changShang" value="${medicineInstance.changShang}" 
                                size="20">
                     </td>
                     <td style=" border: 0;">
                         <label class="control-label x90" style="width: 105px;">药品所属目录：</label>
                     </td>
                     <td style=" border: 0;">
-                        <input type="text" name="ypSsMl" value="${medicineInstance.ypSsMl}" data-rule="required"
+                        <input type="text" name="ypSsMl" value="${medicineInstance.ypSsMl}" 
                                size="20">
                     </td>
                 </tr>
