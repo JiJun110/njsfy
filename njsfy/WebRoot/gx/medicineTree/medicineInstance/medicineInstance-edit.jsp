@@ -218,7 +218,7 @@
                         </select>
                     </td>
                     <td style=" border: 0;">
-                        <label class="control-label x90" style="width: 105px;">孕期安全等级：</label>
+                        <label class="control-label x90" style="width: 105px;">妊娠期危害分级：</label>
                     </td>
                     <td style=" border: 0;">
                         <select name="yqAqdj" data-toggle="selectpicker">

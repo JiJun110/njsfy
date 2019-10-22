@@ -116,7 +116,7 @@
             <%--<th width="35%" align="center">适应症</th>--%>
             <%--<th width="35%" align="center">用法用量</th>--%>
             <th width="10%" align="center">哺乳期安全等级</th>
-            <th width="10%" align="center">孕期安全等级</th>
+            <th width="10%" align="center">妊娠期危害分级</th>
             <th width="5%" align="center">是否基药</th>
             <th width="6%" align="center">是否高危药</th>
             <th width="5%" align="center">医保类别</th>

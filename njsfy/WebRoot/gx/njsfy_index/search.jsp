@@ -132,8 +132,8 @@
                         <c:forEach items="${medicineInstanceList}" var="bean" varStatus="status">
                             <li onclick="getYqAqdjMedicine('${bean.yqAqdj}')">
                                 <div >
-                                    <h3 class="resultlink" ><a  >孕期安全等级</a> </h3>
-                                    <p> <b>孕期安全等级：</b>${bean.yqAqdj}</p>
+                                    <h3 class="resultlink" ><a  >哺乳期危险等级</a> </h3>
+                                    <p> <b>哺乳期危险等级：</b>${bean.yqAqdj}</p>
                                 </div>
                                 <div class="fr"> </div>
                             </li>

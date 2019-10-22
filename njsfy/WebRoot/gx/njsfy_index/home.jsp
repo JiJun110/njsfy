@@ -130,7 +130,7 @@
         </div>
     </div>
     <div class="contentrow">
-        <div class="contentdiv" onclick="shiyingzheng()">
+        <div class="contentdiv" onclick="yunQiAnQuan()">
             <div class="content_pic"><img src="images/img_menu3.png" width="64" height="64" /></div>
             <div class="content_words">
                 <p class="title">哺乳期危险
@@ -153,7 +153,7 @@
         </div>
     </div>
     <div class="contentrow">
-        <div class="contentdiv" onclick="yunQiAnQuan()">
+        <div class="contentdiv" onclick="shiyingzheng()">
             <div class="content_pic"><img src="images/img_menu5.png" width="64" height="64" /></div>
             <div class="content_words">
                 <p class="title">妊娠期危害分级
@@ -167,7 +167,7 @@
         <div class="contentdiv" onclick="changShang()">
             <div class="content_pic"><img src="images/img_menu5.png" width="64" height="64" /></div>
             <div class="content_words">
-                <p class="title">孕期安全等级
+                <p class="title">妊娠期危害分级
                 </p>
                 <p class="titleC">处方药、非处方药（甲类非处方药、乙类非处方药）
                 </p>

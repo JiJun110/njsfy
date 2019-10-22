@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="category">
-            <span class="lactation_z pregnancy">孕期安全等级：${medicineInstance.brqAqdj}</span>
+            <span class="lactation_z pregnancy">妊娠期危害分级：${medicineInstance.brqAqdj}</span>
             <span class="lactation_z lactation">哺乳期安全等级：${medicineInstance.yqAqdj}</span>
             <c:if test="${medicineInstance.isJy=='是'}">
                 <span class="lactation_z medicine">基药</span>

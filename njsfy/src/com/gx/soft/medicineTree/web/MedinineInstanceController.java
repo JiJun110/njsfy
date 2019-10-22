@@ -562,7 +562,7 @@ public class MedinineInstanceController {
                     }
                     if (row.getCell(9) != null) {
                         row.getCell(9).setCellType(Cell.CELL_TYPE_STRING);
-                        if (!row.getCell(9).getStringCellValue().trim().equals("孕期安全等级")) {
+                        if (!row.getCell(9).getStringCellValue().trim().equals("妊娠期危害分级")) {
                             bol = false;
                         }
                     } else {
